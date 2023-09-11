@@ -51,6 +51,57 @@
           </div>
         </div>
       </nav>
+      
+    <div class="container mx-auto p-6">
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Facility Name">
+          </div>
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="address">Address</label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="address" type="text" placeholder="Street Address">
+          </div>
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="neighborhood">Neighborhood</label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="neighborhood" type="text" placeholder="Your Neighborhood">
+          </div>
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="city">City / Township</label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="Your City / Township">
+          </div>
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2">State</label>
+              <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <option value="">Select a state</option>
+                  <option value="ohio">Ohio</option>
+                  <option value="alaska">Alaska</option>
+                  <option value="texas">Texas</option>
+                  <option value="california">California</option>
+              </select>
+          </div>
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="zip">Zip</label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zip" type="number" placeholder="Your Zip">
+          </div>
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="latitude">Latitude</label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="latitude" type="number" placeholder="Your Latitude">
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="longitude">Longitude</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="longitude" type="number" placeholder="Your Longitude">
+        </div>
+          <div class="flex items-center justify-between">
+              <button class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="submitBtn" onclick="generatePDF()">
+                  Submit
+              </button>
+          </div>
+      </form>
+    </div>
+
+    <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
