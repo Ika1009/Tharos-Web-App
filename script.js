@@ -8,17 +8,6 @@ function generatePDF() {
     const latitude = document.getElementById('latitude').value;
     const longitude = document.getElementById('longitude').value;
 
-    const pdfContent = `
-        Name: ${facilityName}
-        Address: ${address}
-        Neighborhood: ${neighborhood}
-        City / Township: ${city}
-        State: ${state}
-        Zip: ${zip}
-        Latitude: ${latitude}
-        Longitude: ${longitude}
-    `;
-
     var props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
         returnJsPDFDocObject: true,
@@ -57,11 +46,10 @@ function generatePDF() {
             label: "Invoice issued for:",
             name: facilityName,
             address: address,
-            city: city,
             zip: zip,
-            //phone: "(+355) 069 22 22 222",
-            //email: "client@website.al",
-            //otherInfo: "www.website.al",
+            phone: "(+355) 069 22 22 222",
+            email: "client@website.al",
+            otherInfo: city,
         },
         invoice: {
             label: "Invoice #: ",
