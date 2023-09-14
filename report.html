@@ -101,6 +101,60 @@
       </form>
     </div>
 
+    <div class="container mx-auto">
+      <div class="overflow-x-auto">
+        <table class="w-4/5 min-w-full">
+          <thead>
+            <tr>
+              <th class="w-1/12 px-2 py-2 text-center">No.</th> <!-- Adjusted width and centered text -->
+              <th class="w-3/12 px-2 py-2 text-center">Item</th>
+              <th class="w-1/12 px-2 py-2 text-center">Yes</th>
+              <th class="w-1/12 px-2 py-2 text-center">No</th>
+              <th class="w-1/12 px-2 py-2 text-center">N/A</th> <!-- Narrower width and centered text -->
+              <th class="w-5/12 px-2 py-2 text-center">Comment</th> <!-- Adjusted width and centered text -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-2 py-2 text-center">1.</td> <!-- Adjusted width and centered text -->
+              <td class="border text-center px-2 py-2">Is the outer perimeter well defined with physical barriers?</td>
+              <td class="border px-2 py-2 text-center">
+                <input
+                  type="radio"
+                  name="q1"
+                  value="yes"
+                  class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                />
+              </td>
+              <td class="border px-2 py-2 text-center">
+                <input
+                  type="radio"
+                  name="q1"
+                  value="no"
+                  class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                />
+              </td>
+              <td class="border px-2 py-2 text-center">
+                <input
+                  type="radio"
+                  name="q1"
+                  value="no-answer"
+                  class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                />
+              </td>
+              <td class="border px-2 py-2">
+                <textarea
+                  class="form-input w-full h-20 px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded-lg focus:shadow-outline-blue focus:border-blue-300 focus:placeholder-gray-600 focus:text-gray-700 sm:text-sm sm:leading-5 resize-none" 
+                  placeholder="Add a comment..."
+                ></textarea>
+              </td>
+            </tr>
+            <!-- Add more rows for additional questions -->
+          </tbody>
+        </table>
+      </div>
+    </div>    
+
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
     <script src="script.js"></script>
 </body>
