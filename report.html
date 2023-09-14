@@ -93,11 +93,6 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="longitude">Longitude</label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="longitude" type="number" placeholder="Your Longitude">
         </div>
-          <div class="flex items-center justify-between">
-              <button class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="submitBtn" onclick="generatePDF()">
-                  Submit
-              </button>
-          </div>
       </form>
     </div>
 
@@ -152,6 +147,11 @@
             <!-- Add more rows for additional questions -->
           </tbody>
         </table>
+        <div class="mt-4">
+          <button id="prev" class="px-4 py-2 mr-2 bg-gray-300">Previous</button>
+          <button id="next" class="px-4 py-2 bg-gray-300">Next</button>
+          <button id="submitButton" class="hidden bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="generatePDF()">Submit</button>
+        </div>
       </div>
     </div>    
 

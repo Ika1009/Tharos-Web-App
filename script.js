@@ -1,4 +1,5 @@
 const questions = [
+    "Is the outer perimeter well defined with physical barriers?",
     "Does the outer perimeter have key card access control for employees?",
     "How many access points are located in the outer perimeter?",
     "How much distance in feet from the outer perimeter to the inner perimeter?",
@@ -113,7 +114,7 @@ const questions = [
   
 // Get a reference to the table body where you want to insert the rows
 const tableBody = document.querySelector('tbody');
-let index = 0;
+let index = 1;
 
 // Create 100 rows and insert them into the table
 for (let i = 2; i <= 111; i++) {
@@ -175,6 +176,71 @@ for (let i = 2; i <= 111; i++) {
   index++;
 }
 
+const rows = document.querySelectorAll('tbody tr');
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+let currentPage = 1;
+const questionsPerPage = 10; // You want to show 10 questions per page
+
+// Initial setup
+function displayPage(page) {
+    rows.forEach((row, index) => {
+        if (index >= (page - 1) * questionsPerPage && index < page * questionsPerPage) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    const submitButton = document.getElementById('submitButton');
+
+    // Update button visibility
+    if (page <= 1) {
+        prevButton.style.visibility = 'hidden';
+    } else {
+        prevButton.style.visibility = 'visible';
+    }
+
+    if (page * questionsPerPage >= rows.length) {
+        nextButton.style.visibility = 'hidden';
+        submitButton.classList.remove('hidden');
+    } else {
+        nextButton.style.visibility = 'visible';
+        submitButton.classList.add('hidden');
+    }
+}
+
+nextButton.addEventListener('click', () => {
+    currentPage += 1;
+    displayPage(currentPage);
+});
+
+prevButton.addEventListener('click', () => {
+    currentPage -= 1;
+    displayPage(currentPage);
+});
+
+// Display the first page initially
+displayPage(1);
+
+function collectAnswers() {
+    let answers = {};
+
+    for (let i = 1; i <= 111; i++) {
+        const radioButtonName = `q${i}`;
+        const checkedRadio = document.querySelector(`input[name="${radioButtonName}"]:checked`);
+
+        if (checkedRadio) {
+            answers[radioButtonName] = checkedRadio.value;
+        } else {
+            // If no radio button is checked for a question, you can set a default value
+            answers[radioButtonName] = 'no-answer'; 
+        }
+    }
+
+    return answers;
+}
+
 function generatePDF() {
     const facilityName = document.getElementById('name').value;
     const address = document.getElementById('address').value;
@@ -184,6 +250,7 @@ function generatePDF() {
     const zip = document.getElementById('zip').value;
     const latitude = document.getElementById('latitude').value;
     const longitude = document.getElementById('longitude').value;
+    const allAnswers = collectAnswers();
 
     var props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
@@ -231,6 +298,38 @@ function generatePDF() {
             invGenDate: `Invoice Date: ${new Date()}`,
             headerBorder: false,
             tableBodyBorder: false,
+            header: [
+                {
+                  title: "#", 
+                  style: { 
+                    width: 10 
+                  } 
+                }, 
+                { 
+                  title: "Item",
+                  style: {
+                    width: 80
+                  } 
+                }, 
+                { 
+                  title: "Answer",
+                  style: {
+                    width: 30
+                  } 
+                }, 
+                { 
+                  title: "Comment",
+                  style: {
+                    width: 60
+                  }
+                }
+              ],
+              table: Array.from(Array(111), (item, index)=>([
+                index + 1,
+                questions[index],
+                allAnswers[`q${index + 1}`],
+                "/"
+            ])),
             invDescLabel: "Invoice Note",
             invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
         },
