@@ -268,17 +268,6 @@ function generatePDF() {
                 left: 0 //negative or positive num, from the current position
             }
         },
-        stamp: {
-            inAllPages: true, //by default = false, just in the last page
-            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-            type: 'JPG', //optional, when src= data:uri (nodejs case)
-            width: 20, //aspect ratio = width/height
-            height: 20,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
         business: {
             name: "Tharros Security Solutions",
             address: "9420 Towne Square Ave, Suite 4 Blue Ash, Ohio 45242",
@@ -340,5 +329,16 @@ function generatePDF() {
         pageLabel: "Page ",
     };
 
-    var pdfObject = jsPDFInvoiceTemplate.default(props); //returns number of pages created
+    var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
+
+    addWatermark(pdfObject, "images/watermark.png");
+
+    pdfObject.jsPDFDocObject.save("Report"); 
+}
+
+function addWatermark(pdf, logoSrc) {
+    for (let i = 1; i <= 5; i++) {
+        pdf.jsPDFDocObject.setPage(i);
+        pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
+    }
 }
