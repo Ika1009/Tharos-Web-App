@@ -241,6 +241,60 @@ function collectAnswers() {
     return answers;
 }
 
+function collectComments() {
+    // Initialize an empty array to store comments
+    const comments = [];
+
+    // Get a NodeList of all textarea elements within the table
+    const commentTextareas = document.querySelectorAll('tbody textarea');
+
+    // Loop through the NodeList and push the content of each textarea into the comments array
+    commentTextareas.forEach(textarea => {
+        comments.push(textarea.value);
+    });
+
+    return comments;
+}
+
+
+function uploadReport(answers, comments) {
+    if (!Array.isArray(answers) || !answers.length || !Array.isArray(comments) || !comments.length) {
+        console.error("Invalid answers or comments array");
+        return;
+    }
+
+    // Construct payload based on the API's expected structure
+    const payload = {};
+    for (let i = 2; i <= 111; i++) {
+        payload['q' + i] = answers[i - 2];  // Since array indices start at 0
+        payload['comment' + i] = comments[i - 2];
+    }
+
+    // Set up the fetch options
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(payload).toString() // Convert the payload object to URL-encoded string
+    };
+
+    // Make the fetch request
+    fetch('http://your-server-url/path-to-your-api', options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Since the server seems to send back a plain text response
+        })
+        .then(data => {
+            console.log('Data successfully uploaded:', data);
+        })
+        .catch(error => {
+            console.error('There was a problem uploading the report:', error);
+        });
+}
+
 function generatePDF() {
     const facilityName = document.getElementById('name').value;
     const address = document.getElementById('address').value;
@@ -251,6 +305,8 @@ function generatePDF() {
     const latitude = document.getElementById('latitude').value;
     const longitude = document.getElementById('longitude').value;
     const allAnswers = collectAnswers();
+    const allComments = collectComments();
+    uploadReport(allAnswers, allComments);
 
     var props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
