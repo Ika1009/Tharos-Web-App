@@ -4,14 +4,13 @@ require 'db_conn.php';  // Include the database connection
 
 header('Content-Type: application/json');
 
-// Check if data is provided
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
+if (isset($email, $password)) {
     // Fetch hashed password from database
-    $stmt = $pdo->prepare('SELECT password FROM users WHERE username = ?');
-    $stmt->execute([$username]);
+    $stmt = $pdo->prepare('SELECT password FROM users WHERE email = ?');
+    $stmt->execute([$email]);
 
     if ($user = $stmt->fetch()) {
         $hashedPassword = $user['password'];
@@ -29,4 +28,5 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     echo json_encode(['status' => 'error', 'message' => 'Username and password are required']);
     exit;
 }
+
 ?>
