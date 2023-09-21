@@ -17,7 +17,7 @@ form.addEventListener('submit', async (event) => {
             // Handle successful login
             setSecureCookie("loggedIn", "true", 1); // This sets a cookie that lasts for 1 day
             alert("Success");
-            //window.location.href = "path-to-successful-login-destination.php";
+            window.location.href = "reportList.html";
         } else {
             // Handle unsuccessful login
             alert(data.message);
