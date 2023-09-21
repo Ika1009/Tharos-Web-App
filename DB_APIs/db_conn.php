@@ -22,9 +22,8 @@
 
 $servername = 'localhost';
 $username = 'bonanza_nemanja';
-$password = 'Bonanza123';
+$password = 'Bonanza123.';
 $dbname = "bonanza_maildelivery";
-$charset = 'utf8mb4';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
