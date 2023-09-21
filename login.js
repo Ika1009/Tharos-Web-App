@@ -15,7 +15,7 @@ form.addEventListener('submit', async (event) => {
 
         if (data.status === 'success') {
             // Handle successful login
-            document.cookie = `auth=${data.token}; path=/; max-age=86400`; // Cookie will expire in 1 day
+            setSecureCookie("loggedIn", "true", 1); // This sets a cookie that lasts for 1 day
             alert("Success");
             //window.location.href = "path-to-successful-login-destination.php";
         } else {
@@ -27,4 +27,10 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
+function setSecureCookie(name, value, days) {
+    let date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "; expires=" + date.toUTCString();
 
+    document.cookie = name + "=" + (value || "") + expires + "; path=/; secure; samesite=strict";
+}
