@@ -258,34 +258,31 @@ function collectComments() {
 
 
 function uploadReport(answers, comments) {
-    if (!Array.isArray(answers) || !answers.length || !Array.isArray(comments) || !comments.length) {
+    if (typeof answers !== 'object' || !Object.keys(answers).length || !Array.isArray(comments) || !comments.length) {
         console.error("Invalid answers or comments array");
         return;
     }
 
-    // Construct payload based on the API's expected structure
     const payload = {};
     for (let i = 2; i <= 111; i++) {
-        payload['q' + i] = answers[i - 2];  // Since array indices start at 0
+        payload['q' + i] = answers['q' + i];
         payload['comment' + i] = comments[i - 2];
     }
 
-    // Set up the fetch options
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams(payload).toString() // Convert the payload object to URL-encoded string
+        body: new URLSearchParams(payload).toString()
     };
 
-    // Make the fetch request
-    fetch('http://your-server-url/path-to-your-api', options)
+    fetch('./DB_APIs/upload_report.php', options)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.text(); // Since the server seems to send back a plain text response
+            return response.text();
         })
         .then(data => {
             console.log('Data successfully uploaded:', data);

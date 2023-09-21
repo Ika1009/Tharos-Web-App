@@ -60,7 +60,7 @@
                         <form>
                             <div>
                                 <div class="text-sm font-bold text-gray-700 tracking-wide">Full Name</div>
-                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="John Doe">
+                                <input name="full_name" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="John Doe">
                             </div>
                             <div class="mt-8">
                                 <div class="flex justify-between items-center">
@@ -68,7 +68,7 @@
                                         Email Address
                                     </div>
                                 </div>
-                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" placeholder="john.doe@gmail.com">
+                                <input name="email" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" placeholder="john.doe@gmail.com">
                             </div>
                             <div class="mt-8">
                                 <div class="flex justify-between items-center">
@@ -76,7 +76,7 @@
                                         Password
                                     </div>
                                 </div>
-                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password">
+                                <input name="password" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password">
                             </div>
                             <div class="mt-8">
                                 <div class="flex justify-between items-center">
@@ -87,7 +87,7 @@
                                 <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Confirm your password">
                             </div>
                             <div class="mt-10">
-                                <button class="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
+                                <button type="submit" class="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
                                     Sign Up
                                 </button>
                             </div>
@@ -96,5 +96,6 @@
                 </div>
             </div>
         </div>
+        <script src="register.js"></script>
     </body>
 </html>

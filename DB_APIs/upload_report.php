@@ -1,12 +1,6 @@
 <?php
-require 'db_conn.php';
+require 'db_conn.php';  // Make sure this path is correct
 
-// !!!!
-// This example assumes you have a reports table with two columns answers and comments. 
-// Both columns are expected to store the data as JSON strings. 
-// This way, you keep all answers and comments related to a single report together.
-
-// Collect answers and comments
 $answers = [];
 $comments = [];
 for ($i = 2; $i <= 111; $i++) {
@@ -17,20 +11,21 @@ for ($i = 2; $i <= 111; $i++) {
     $comments[] = $comment;
 }
 
-// Convert arrays to JSON strings for storage
 $answersJson = json_encode($answers);
 $commentsJson = json_encode($comments);
 
-// Insert into the database
-$stmt = $conn->prepare("INSERT INTO reports (answers, comments) VALUES (?, ?)");
-$stmt->bind_param("ss", $answersJson, $commentsJson);
-if ($stmt->execute()) {
-    echo "Report saved successfully!";
-} else {
-    echo "Error: " . $stmt->error;
-}
+try {
+    $stmt = $pdo->prepare("INSERT INTO reports (answers, comments) VALUES (:answers, :comments)");
+    $stmt->bindParam(':answers', $answersJson, PDO::PARAM_STR);
+    $stmt->bindParam(':comments', $commentsJson, PDO::PARAM_STR);
 
-$stmt->close();
-$conn->close();
+    if ($stmt->execute()) {
+        echo "Report saved successfully!";
+    } else {
+        echo "Failed to execute statement";
+    }
+} catch (PDOException $e) {
+    echo "Database error: " . $e->getMessage();
+}
 
 ?>

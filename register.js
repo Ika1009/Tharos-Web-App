@@ -1,5 +1,4 @@
-
-const signupForm = document.getElementById('signupForm');
+const signupForm = document.getElementsByTagName("form")[0];
 
 signupForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -14,7 +13,7 @@ signupForm.addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
+        if (data.status === 'success') {
             alert('Signup successful!');
             // Redirect or do something else upon successful signup
         } else {

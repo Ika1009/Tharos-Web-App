@@ -6,8 +6,12 @@ header('Content-Type: application/json');
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-$firstName = $_POST['first_name']; 
-$lastName = $_POST['last_name'];
+$fullName = $_POST['full_name'];
+
+// Split the full name into first and last name
+$names = explode(' ', $fullName);
+$firstName = $names[0];
+$lastName = isset($names[1]) ? $names[1] : '';
 
 // Check if data is provided
 if (isset($email, $password, $firstName, $lastName)) {
