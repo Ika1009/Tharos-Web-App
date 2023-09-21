@@ -260,6 +260,8 @@ function collectComments() {
 function uploadReport(answers, comments) {
     if (!Array.isArray(answers) || !answers.length || !Array.isArray(comments) || !comments.length) {
         console.error("Invalid answers or comments array");
+        console.log(comments);
+        console.log(answers);
         return;
     }
 
