@@ -1,5 +1,5 @@
 <?php
-require 'db_conn.php';
+require 'db_conn.php';  // Make sure this path is correct
 
 $answers = [];
 $comments = [];
@@ -14,17 +14,18 @@ for ($i = 2; $i <= 111; $i++) {
 $answersJson = json_encode($answers);
 $commentsJson = json_encode($comments);
 
-// Here you could add validation for the data
+try {
+    $stmt = $pdo->prepare("INSERT INTO reports (answers, comments) VALUES (:answers, :comments)");
+    $stmt->bindParam(':answers', $answersJson, PDO::PARAM_STR);
+    $stmt->bindParam(':comments', $commentsJson, PDO::PARAM_STR);
 
-$stmt = $conn->prepare("INSERT INTO reports (answers, comments) VALUES (?, ?)");
-$stmt->bind_param("ss", $answersJson, $commentsJson);
-
-if ($stmt->execute()) {
-    echo "Report saved successfully!";
-} else {
-    echo "Error: " . $stmt->error;
+    if ($stmt->execute()) {
+        echo "Report saved successfully!";
+    } else {
+        echo "Failed to execute statement";
+    }
+} catch (PDOException $e) {
+    echo "Database error: " . $e->getMessage();
 }
 
-$stmt->close();
-$conn->close();
 ?>
