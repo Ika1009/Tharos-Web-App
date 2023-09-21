@@ -15,6 +15,7 @@ form.addEventListener('submit', async (event) => {
 
         if (data.status === 'success') {
             // Handle successful login
+            document.cookie = `auth=${data.token}; path=/; max-age=86400`; // Cookie will expire in 1 day
             alert("Success");
             //window.location.href = "path-to-successful-login-destination.php";
         } else {
