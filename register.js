@@ -1,4 +1,4 @@
-
+console.log("connected");
 const signupForm = document.getElementById('signupForm');
 
 signupForm.addEventListener('submit', function(e) {
