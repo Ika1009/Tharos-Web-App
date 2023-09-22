@@ -256,23 +256,57 @@ function collectComments() {
     return comments;
 }
 
-function getCookie(name) {
+// Commented this part of code because we don't want to work with cookies 
+
+/*function getCookie(name) {
     const value = "; " + document.cookie;
     const parts = value.split("; " + name + "=");
     if (parts.length == 2) return parts.pop().split(";").shift();
+}*/
+
+function getSessionValue() {
+    return new Promise((resolve, reject) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'getSession.php', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                resolve(xhr.responseText);
+            } else if (xhr.readyState == 4) {
+                reject(new Error(`Failed with status: ${xhr.status}`));
+            }
+        };
+        xhr.send();
+    });
 }
 
-function uploadReport(answers, comments) {
+async function uploadReport(answers, comments) {
     if (typeof answers !== 'object' || !Object.keys(answers).length || !Array.isArray(comments) || !comments.length) {
         console.error("Invalid answers or comments array");
         return;
     }
     
-    let userId = getCookie('user_id');
+    // Commented this part of code because we don't want to work with cookies 
+
+    /*let userId = getCookie('user_id');
     if(!userId) {
         console.error("No user_id, not logged in!");
         return;
+    }*/
+
+    try {
+        let userId = await getSessionValue();
+        
+        if(!userId) {
+            console.error("No user_id, not logged in!");
+            return;
+        }
+        
+    } catch (error) {
+        console.error('Error in main:', error);
+        return;
     }
+
+    console.log(userId);
 
     const payload = {
         user_id: userId // Add the user_id from the cookie
@@ -327,7 +361,7 @@ function generatePDF() {
         orientationLandscape: false,
         compress: true,
         logo: {
-            src: "images/ICON_1-768x767.png",
+            src: "../images/ICON_1-768x767.png",
             type: 'PNG', //optional, when src= data:uri (nodejs case)
             width: 26.66, //aspect ratio = width/height
             height: 26.66,

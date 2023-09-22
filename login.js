@@ -26,10 +26,12 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-function setSecureCookie(name, value, days) {
+// Commented this part of code because we don't want to work with cookies 
+
+/*function setSecureCookie(name, value, days) {
     let date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = "; expires=" + date.toUTCString();
 
     document.cookie = name + "=" + (value || "") + expires + "; path=/; secure; samesite=strict";
-}
+}*/
