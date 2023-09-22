@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+    if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] === true) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,16 +34,12 @@
             <a href="" class="uppercase py-2 pl-3 pr-4 text-white bg-custom-light-blue rounded md:bg-transparent md:text-custom-light-blue md:p-0 md:dark:text-custom-light-blue" aria-current="page">Home</a>
             </li>
             <li>
-            <a href="#services"
-                class="uppercase py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-custom-light-blue md:p-0 md:dark:hover:text-custom-light-blue dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Our Services</a>
+            <a href="#report"
+                  class="uppercase py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-custom-light-blue md:p-0 md:dark:hover:text-custom-light-blue dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Create Report</a>
             </li>
             <li>
-            <a href="#about"
-                class="uppercase py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-custom-light-blue md:p-0 md:dark:hover:text-custom-light-blue dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About us</a>
-            </li>
-            <li>
-            <a href="#blog"
-                class="uppercase py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-custom-light-blue md:p-0 md:dark:hover:text-custom-light-blue dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
+            <a href="reportList.html"
+                  class="uppercase py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-custom-light-blue md:p-0 md:dark:hover:text-custom-light-blue dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Report History</a>
             </li>
             <li>
             <a href="#contact"
@@ -90,3 +91,7 @@
 </body>
 
 </html>
+<?php
+} else {
+    header('Location: ../login.php');
+}
