@@ -357,7 +357,7 @@ function generatePDF() {
     var props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
         returnJsPDFDocObject: true,
-        fileName: "Milos",
+        fileName: "Report - Tharros Security Solutions",
         orientationLandscape: false,
         compress: true,
         logo: {
@@ -433,14 +433,18 @@ function generatePDF() {
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
-    addWatermark(pdfObject, "../images/watermark.png");
+    // Commented this part of code because quality of image is low
 
-    pdfObject.jsPDFDocObject.save("Report"); 
+    //addWatermark(pdfObject, "../images/watermark.png");
+
+    //pdfObject.jsPDFDocObject.save("Report"); 
 }
 
-function addWatermark(pdf, logoSrc) {
+// Commented this part of code because quality of image is low
+
+/*function addWatermark(pdf, logoSrc) {
     for (let i = 1; i <= 5; i++) {
         pdf.jsPDFDocObject.setPage(i);
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
-}
+}*/
