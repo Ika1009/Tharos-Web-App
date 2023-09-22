@@ -293,8 +293,10 @@ async function uploadReport(answers, comments) {
         return;
     }*/
 
+    let userId;
+
     try {
-        let userId = await getSessionValue();
+        userId = await getSessionValue();
         
         if(!userId) {
             console.error("No user_id, not logged in!");
@@ -433,7 +435,7 @@ function generatePDF() {
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
-    addWatermark(pdfObject, "images/watermark.png");
+    addWatermark(pdfObject, "../images/watermark.png");
 
     pdfObject.jsPDFDocObject.save("Report"); 
 }
