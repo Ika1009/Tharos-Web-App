@@ -146,11 +146,22 @@
             <!-- Add more rows for additional questions -->
           </tbody>
         </table>
-        <div class="mt-4">
-          <button id="prev" class="px-4 py-2 mr-2 bg-gray-300">Previous</button>
-          <button id="next" class="px-4 py-2 bg-gray-300">Next</button>
-          <button id="submitButton" class="hidden bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="generatePDF()">Submit</button>
-        </div>
+        <div class="mt-8 flex justify-center space-x-6"> <!-- Wrapping div with flex and spacing -->
+            <!-- Previous Button -->
+            <button id="prev" class="px-6 py-2 bg-custom-dark-blue hover:bg-custom-dark-blue text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-custom-dark-blue focus:ring-opacity-60 transition duration-300 ease-in-out" onclick="scrollToFormTop()">
+                Previous
+            </button>
+        
+            <!-- Next Button -->
+            <button id="next" class="px-6 py-2 bg-custom-dark-blue hover:bg-custom-dark-blue text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-custom-dark-blue focus:ring-opacity-60 transition duration-300 ease-in-out" onclick="scrollToFormTop()">
+                Next
+            </button>
+        
+            <!-- Submit Button -->
+            <button id="submitButton" class="hidden px-6 py-2 bg-custom-dark-blue hover:bg-custom-dark-blue text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-custom-dark-blue focus:ring-opacity-60 transition duration-300 ease-in-out" onclick="generatePDF()">
+                Submit
+            </button>
+        </div> 
       </div>
     </div>    
 

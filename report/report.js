@@ -223,6 +223,11 @@ prevButton.addEventListener('click', () => {
 // Display the first page initially
 displayPage(1);
 
+function scrollToFormTop() {
+    const formElement = document.getElementById('formTop');
+    formElement.scrollIntoView({ behavior: 'smooth' });  // smooth scroll to the top of the form
+}
+
 function collectAnswers() {
     let answers = {};
 
