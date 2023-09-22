@@ -19,7 +19,7 @@
     <nav class="bg-custom-dark-blue border-b-gray-200 dark:bg-custom-dark-blue border-b-[0.5px] dark:border-b-gray-700">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="index.html" class="flex items-center">
-            <img src="images/Tharros-Security-Solutions_LOGO-B-768x233.png" class="h-8 mr-3" alt="Tharros Security Solutions Logo" />
+            <img src="../images/Tharros-Security-Solutions_LOGO-B-768x233.png" class="h-8 mr-3" alt="Tharros Security Solutions Logo" />
           </a>
           <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-custom-dark-blue dark:bg-custom-dark-blue md:dark:bg-custom-dark-blue dark:border-custom-dark-blue">

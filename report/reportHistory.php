@@ -19,7 +19,7 @@
     <nav class="bg-custom-dark-blue border-b-gray-200 dark:bg-custom-dark-blue border-b-[0.5px] dark:border-b-gray-700">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="index.html" class="flex items-center">
-        <img src="images/Tharros-Security-Solutions_LOGO-B-768x233.png" class="h-8 mr-3" alt="Tharros Security Solutions Logo" />
+        <img src="../images/Tharros-Security-Solutions_LOGO-B-768x233.png" class="h-8 mr-3" alt="Tharros Security Solutions Logo" />
         </a>
         <div class="flex md:order-2">
         <button type="button" class=" uppercase text-white bg-custom-dark-blue border dark:border-white hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-custom-dark-blue dark:hover:bg-slate-600 dark:focus:ring-slate-700">Schedule a call</button>
