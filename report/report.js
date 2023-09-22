@@ -418,7 +418,7 @@ function generatePDF() {
               table: Array.from(Array(111), (item, index)=>([
                 index + 1,
                 questions[index],
-                allAnswers[`q${index + 1}`] === "yes" ? "\u2713" : (allAnswers[`q${index + 1}`] === "no" ? "\u2717" : "N/A"),
+                allAnswers[`q${index + 1}`],
                 allComments[index]
             ])),
             invDescLabel: "Invoice Note",
