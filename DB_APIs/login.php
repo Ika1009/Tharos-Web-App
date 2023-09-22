@@ -1,5 +1,7 @@
 <?php
 
+session_start(); // Start the session
+
 require 'db_conn.php';  // Include the database connection
 
 header('Content-Type: application/json');
@@ -17,6 +19,8 @@ if (isset($email, $password)) {
 
         // Verify the password against the hash
         if (password_verify($password, $hashedPassword)) {
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['logged_in'] = true;
             echo json_encode(['status' => 'success', 'message' => 'Login successful', 'user_id' => $user['user_id']]);
             exit;
         }

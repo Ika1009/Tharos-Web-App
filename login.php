@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +30,7 @@
                         <form>
                             <div>
                                 <div class="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
-                                <input name="email" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" name="email_input" id="name_input" placeholder="mike@gmail.com">
+                                <input name="email" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" id="name_input" placeholder="mike@gmail.com">
                             </div>
                             <div class="mt-8">
                                 <div class="flex justify-between items-center">
@@ -39,7 +44,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <input name="password" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" name="password_input" id="password_input" placeholder="Enter your password">
+                                <input name="password" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" id="password_input" placeholder="Enter your password">
                             </div>
                             <div class="mt-10">
                                 <button class="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
@@ -92,3 +97,7 @@
         <script src="login.js"></script>
     </body>
 </html>
+<?php
+    } else {
+        header('Location: report.php');
+    }
