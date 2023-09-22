@@ -99,5 +99,5 @@
 </html>
 <?php
     } else {
-        header('Location: report.php');
+        header('Location: report/report.php');
     }
