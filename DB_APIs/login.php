@@ -13,7 +13,7 @@ if (isset($email, $password)) {
     $stmt->execute([$email]);
 
     if ($user = $stmt->fetch()) {
-        $hashedPassword = $user['password'];
+        $hashedPassword = $user['password']; 
 
         // Verify the password against the hash
         if (password_verify($password, $hashedPassword)) {
