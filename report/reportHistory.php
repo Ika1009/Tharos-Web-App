@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports - Tharros Security Solutions, LLC</title>
     <link rel="icon" href="images/ICON_1-768x767.png" type="image/x-icon">
-    <link href="dist/output.css" rel="stylesheet" />
+    <link href="../dist/output.css" rel="stylesheet" />
 </head>
 
 <body>
