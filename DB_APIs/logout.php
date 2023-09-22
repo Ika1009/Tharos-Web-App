@@ -1,7 +1,12 @@
 <?php
-session_start();
 
-session_unset();
-session_destroy();
+if (isset($_POST['logout'])) {
+    session_start();
 
-header('Location: ../login.php');
+    session_unset();
+    session_destroy();
+
+    header('Location: ../login.php');
+    exit();
+}
+?>
