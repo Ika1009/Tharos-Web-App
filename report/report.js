@@ -308,8 +308,6 @@ async function uploadReport(answers, comments) {
         return;
     }
 
-    console.log(userId);
-
     const payload = {
         user_id: userId // Add the user_id from the cookie
     };
@@ -359,7 +357,7 @@ function generatePDF() {
     var props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
         returnJsPDFDocObject: true,
-        fileName: "Report",
+        fileName: "Milos",
         orientationLandscape: false,
         compress: true,
         logo: {
