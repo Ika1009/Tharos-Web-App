@@ -256,14 +256,28 @@ function collectComments() {
     return comments;
 }
 
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
 
 function uploadReport(answers, comments) {
     if (typeof answers !== 'object' || !Object.keys(answers).length || !Array.isArray(comments) || !comments.length) {
         console.error("Invalid answers or comments array");
         return;
     }
+    
+    let userId = getCookie('user_id');
+    if(!userId) {
+        console.error("No user_id, not logged in!");
+        return;
+    }
 
-    const payload = {};
+    const payload = {
+        user_id: userId // Add the user_id from the cookie
+    };
+
     for (let i = 2; i <= 111; i++) {
         payload['q' + i] = answers['q' + i];
         payload['comment' + i] = comments[i - 2];
@@ -291,6 +305,7 @@ function uploadReport(answers, comments) {
             console.error('There was a problem uploading the report:', error);
         });
 }
+
 
 function generatePDF() {
     const facilityName = document.getElementById('name').value;
