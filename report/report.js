@@ -327,7 +327,7 @@ async function uploadReport(answers, comments) {
         body: new URLSearchParams(payload).toString()
     };
 
-    fetch('./DB_APIs/upload_report.php', options)
+    fetch('../DB_APIs/upload_report.php', options)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
