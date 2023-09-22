@@ -15,7 +15,7 @@ form.addEventListener('submit', async (event) => {
 
         if (data.status === 'success') {
             // Handle successful login
-            setSecureCookie("loggedIn", "true", 1); // This sets a cookie that lasts for 1 day
+            setSecureCookie("user_id", data.user_id, 1); // Set user_id as a cookie
             alert("Success");
             window.location.href = "reportList.html";
         } else {

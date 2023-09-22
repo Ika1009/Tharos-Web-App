@@ -8,8 +8,8 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 if (isset($email, $password)) {
-    // Fetch hashed password from database
-    $stmt = $pdo->prepare('SELECT password FROM users WHERE email = ?');
+    // Fetch hashed password and user_id from database
+    $stmt = $pdo->prepare('SELECT user_id, password FROM users WHERE email = ?');
     $stmt->execute([$email]);
 
     if ($user = $stmt->fetch()) {
@@ -17,7 +17,7 @@ if (isset($email, $password)) {
 
         // Verify the password against the hash
         if (password_verify($password, $hashedPassword)) {
-            echo json_encode(['status' => 'success', 'message' => 'Login successful']);
+            echo json_encode(['status' => 'success', 'message' => 'Login successful', 'user_id' => $user['user_id']]);
             exit;
         }
     }
