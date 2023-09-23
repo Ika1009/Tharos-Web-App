@@ -55,6 +55,11 @@ getReport(userSessionId);
 
 
 function generatePDF(report) {
+    
+    function safeString(value) {
+        return value !== null && value !== undefined ? value : '';
+    }
+
     const facilityName = safeString(report.facilityName);
     const address = safeString(report.address);
     const neighborhood = safeString(report.neighborhood);
