@@ -90,7 +90,7 @@
     </section>
     <script>
         // Set the PHP session value to a JavaScript variable
-        var userSessionId = <?php echo $_SESSION['user']; ?>;
+        var userSessionId = <?php echo $_SESSION['user_id']; ?>;
     </script>
     <script type="text/javascript" src="reportHistory.js"></script> 
 </body>
