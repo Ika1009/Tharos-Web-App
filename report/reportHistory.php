@@ -36,7 +36,7 @@
             if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == 0) {
             ?>
                 <li>
-                    <a href="../register.html" class="uppercase py-2 pl-3 pr-4 text-white md:hover:text-custom-light-blue md:dark:hover:text-custom-light-blue rounded md:bg-transparent md:p-0">Sign up</a>
+                    <a href="../register.html" class="uppercase py-2 pl-3 pr-4 text-white md:hover:text-custom-light-blue md:dark:hover:text-custom-light-blue rounded md:bg-transparent md:p-0">Create an account</a>
                 </li>
             <?php
             }
@@ -69,6 +69,10 @@
         </div>
         </div>
     </section>
+    <script>
+        // Set the PHP session value to a JavaScript variable
+        var userSessionId = <?php echo $_SESSION['user_id']; ?>;
+    </script>
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
     <script type="text/javascript" src="reportHistory.js"></script> 
 </body>
