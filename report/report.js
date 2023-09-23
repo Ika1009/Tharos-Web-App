@@ -453,3 +453,8 @@ function generatePDF() {
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
 }*/
+
+function toggleMenu() {
+    const navbarCta = document.getElementById('navbar-cta');
+    navbarCta.classList.toggle('hidden');
+}
