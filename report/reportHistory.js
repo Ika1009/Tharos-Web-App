@@ -55,7 +55,7 @@ getReport(userSessionId);
 
 
 function generatePDF(report) {
-    
+
     function safeString(value) {
         return value !== null && value !== undefined ? value : '';
     }
@@ -68,7 +68,7 @@ function generatePDF(report) {
     const zip = safeString(report.zip);
     const latitude = safeString(report.latitude);
     const longitude = safeString(report.longitude);    
-    const allAnswers = JSON.parse(report.answers);
+    const allAnswers = report.answers;
     const allComments = JSON.parse(report.comments);
     
     var props = {
