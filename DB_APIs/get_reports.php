@@ -4,7 +4,7 @@ require 'db_conn.php';
 header('Content-Type: application/json');
 
 // Check for the user ID in the request (either GET or POST)
-$userID = $_GET['userID'] ?? null;
+$userID = $_GET['user_id'] ?? null;
 
 // If userID is not provided, return an error response
 if (!$userID) {
@@ -13,7 +13,7 @@ if (!$userID) {
 }
 
 // Prepare a SQL statement to fetch reports based on userID
-$stmt = $conn->prepare("SELECT * FROM reports WHERE userID = ?");
+$stmt = $conn->prepare("SELECT * FROM reports WHERE user_id = ?");
 $stmt->bind_param("i", $userID);
 
 // Execute the statement

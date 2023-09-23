@@ -81,6 +81,9 @@
             <p class="text-gray-700 mb-2">Report Description 4</p>
             <a href="#" class="text-blue-600 hover:underline">View Report</a>
             </div>
+            <button id="submitButton" class="hidden px-6 py-2 bg-custom-dark-blue hover:bg-custom-dark-blue text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-custom-dark-blue focus:ring-opacity-60 transition duration-300 ease-in-out" onclick="getReport($_SESSION['user'])">
+                Submit
+            </button>
             <!-- Add more report cards as needed -->
         </div>
         </div>
