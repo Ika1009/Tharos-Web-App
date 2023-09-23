@@ -55,7 +55,7 @@ getReport(userSessionId);
 
 
 function generatePDF(report) {
-
+    
     function safeString(value) {
         return value !== null && value !== undefined ? value : '';
     }
@@ -68,7 +68,7 @@ function generatePDF(report) {
     const zip = safeString(report.zip);
     const latitude = safeString(report.latitude);
     const longitude = safeString(report.longitude);    
-    const allAnswers = report.answers;
+    const allAnswers = JSON.parse(report.answers);
     const allComments = JSON.parse(report.comments);
     
     var props = {
@@ -135,7 +135,7 @@ function generatePDF(report) {
               table: Array.from(Array(111), (item, index) => ([
                 index + 1,
                 safeString(questions[index]),
-                safeString(allAnswers[`q${index + 1}`]),
+                safeString(allAnswers[index]),
                 safeString(allComments[index])
             ])),
             invDescLabel: "Invoice Note",
