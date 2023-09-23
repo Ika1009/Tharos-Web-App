@@ -46,3 +46,5 @@ async function getReport(userId) {
         console.error('Error fetching the reports:', error);
     }
 }
+
+getReport(userSessionId);
