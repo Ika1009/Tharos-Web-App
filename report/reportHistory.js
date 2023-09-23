@@ -55,14 +55,14 @@ getReport(userSessionId);
 
 
 function generatePDF(report) {
-    const facilityName = report.facilityName;
-    const address = report.address;
-    const neighborhood = report.neighborhood;
-    const city = report.city;
-    const state = report.state;
-    const zip = report.zip;
-    const latitude = report.latitude;
-    const longitude = report.longitude;
+    const facilityName = safeString(report.facilityName);
+    const address = safeString(report.address);
+    const neighborhood = safeString(report.neighborhood);
+    const city = safeString(report.city);
+    const state = safeString(report.state);
+    const zip = safeString(report.zip);
+    const latitude = safeString(report.latitude);
+    const longitude = safeString(report.longitude);    
     const allAnswers = JSON.parse(report.answers);
     const allComments = JSON.parse(report.comments);
     
@@ -71,93 +71,77 @@ function generatePDF(report) {
         returnJsPDFDocObject: true,
         fileName: "Report - Tharros Security Solutions",
         orientationLandscape: false,
+        compress: true,
         logo: {
             src: "../images/ICON_1-768x767.png",
-            type: 'PNG',
-            width: 26.66,
-            height: 26.66
+            type: 'PNG', //optional, when src= data:uri (nodejs case)
+            width: 26.66, //aspect ratio = width/height
+            height: 26.66,
+            margin: {
+                top: 0, //negative or positive num, from the current position
+                left: 0 //negative or positive num, from the current position
+            }
         },
         business: {
-            name: "Tharros Security Solutions"
-        }
+            name: "Tharros Security Solutions",
+            address: "9420 Towne Square Ave, Suite 4 Blue Ash, Ohio 45242",
+            phone: "(+513) 964-0836",
+            email: "ContactUs@Tharros.net",
+            website: "https://tharros.net/",
+        },
+        contact: {
+            label: "Invoice issued for:",
+            name: facilityName,
+            address: address,
+            otherInfo: `${state}, ${city}, ${neighborhood}, ${zip}, ${longitude}, ${latitude}`
+        },
+        invoice: {
+            label: "Invoice #: ",
+            num: 1,
+            invGenDate: `Invoice Date: ${new Date()}`,
+            headerBorder: false,
+            tableBodyBorder: false,
+            header: [
+                {
+                  title: "#", 
+                  style: { 
+                    width: 10 
+                  } 
+                }, 
+                { 
+                  title: "Item",
+                  style: {
+                    width: 100
+                  } 
+                }, 
+                { 
+                  title: "Answer",
+                  style: {
+                    width: 30
+                  } 
+                }, 
+                { 
+                  title: "Comment",
+                  style: {
+                    width: 60
+                  }
+                }
+              ],
+              table: Array.from(Array(111), (item, index) => ([
+                index + 1,
+                safeString(questions[index]),
+                safeString(allAnswers[`q${index + 1}`]),
+                safeString(allComments[index])
+            ])),
+            invDescLabel: "Invoice Note",
+            invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
+        },
+        footer: {
+            text: "The invoice is created on a computer and is valid without the signature and stamp.",
+        },
+        pageEnable: true,
+        pageLabel: "Page ",
     };
-    
-    // var props = {
-    //     outputType: jsPDFInvoiceTemplate.OutputType.Save,
-    //     returnJsPDFDocObject: true,
-    //     fileName: "Report - Tharros Security Solutions",
-    //     orientationLandscape: false,
-    //     compress: true,
-    //     logo: {
-    //         src: "../images/ICON_1-768x767.png",
-    //         type: 'PNG', //optional, when src= data:uri (nodejs case)
-    //         width: 26.66, //aspect ratio = width/height
-    //         height: 26.66,
-    //         margin: {
-    //             top: 0, //negative or positive num, from the current position
-    //             left: 0 //negative or positive num, from the current position
-    //         }
-    //     },
-    //     business: {
-    //         name: "Tharros Security Solutions",
-    //         address: "9420 Towne Square Ave, Suite 4 Blue Ash, Ohio 45242",
-    //         phone: "(+513) 964-0836",
-    //         email: "ContactUs@Tharros.net",
-    //         website: "https://tharros.net/",
-    //     },
-    //     contact: {
-    //         label: "Invoice issued for:",
-    //         name: facilityName,
-    //         address: address,
-    //         otherInfo: `${state}, ${city}, ${neighborhood}, ${zip}, ${longitude}, ${latitude}`
-    //     },
-    //     invoice: {
-    //         label: "Invoice #: ",
-    //         num: 1,
-    //         invGenDate: `Invoice Date: ${new Date()}`,
-    //         headerBorder: false,
-    //         tableBodyBorder: false,
-    //         header: [
-    //             {
-    //               title: "#", 
-    //               style: { 
-    //                 width: 10 
-    //               } 
-    //             }, 
-    //             { 
-    //               title: "Item",
-    //               style: {
-    //                 width: 100
-    //               } 
-    //             }, 
-    //             { 
-    //               title: "Answer",
-    //               style: {
-    //                 width: 30
-    //               } 
-    //             }, 
-    //             { 
-    //               title: "Comment",
-    //               style: {
-    //                 width: 60
-    //               }
-    //             }
-    //           ],
-    //           table: Array.from(Array(111), (item, index)=>([
-    //             index + 1,
-    //             questions[index],
-    //             allAnswers[`q${index + 1}`],
-    //             allComments[index]
-    //         ])),
-    //         invDescLabel: "Invoice Note",
-    //         invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
-    //     },
-    //     footer: {
-    //         text: "The invoice is created on a computer and is valid without the signature and stamp.",
-    //     },
-    //     pageEnable: true,
-    //     pageLabel: "Page ",
-    // };
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
