@@ -70,6 +70,7 @@
         </div>
         </div>
     </section>
+    <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
     <script>
         // Set the PHP session value to a JavaScript variable
         var userSessionId = <?php echo $_SESSION['user_id']; ?>;
