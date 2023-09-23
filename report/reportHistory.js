@@ -6,9 +6,9 @@ async function getReport(userId) {
             throw new Error('Network response was not ok');
         }
 
-        const reports = await response.json();
+        const data = await response.json();
 
-        if (!Array.isArray(reports) || !reports.length) {
+        if (!Array.isArray(data.reports) || !data.reports.length) {
             console.error('No reports found');
             return;
         }
@@ -18,7 +18,7 @@ async function getReport(userId) {
         // Clear any existing report cards
         reportContainer.innerHTML = '';
 
-        reports.forEach(report => {
+        data.reports.forEach(report => {
             const card = document.createElement('div');
             card.classList.add('bg-white', 'rounded-lg', 'p-4', 'shadow');
 
