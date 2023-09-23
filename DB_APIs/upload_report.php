@@ -14,13 +14,14 @@ $longitude = $_POST['longitude'] ?? null;
 $answers = [];
 $comments = [];
 
-for ($i = 2; $i <= 111; $i++) {
+for ($i = 1; $i <= 111; $i++) {
     $answer = $_POST['q' . $i] ?? null;
     $comment = $_POST['comment' . $i] ?? null;
     
     $answers[] = $answer;
     $comments[] = $comment;
 }
+
 
 $answersJson = json_encode($answers);
 $commentsJson = json_encode($comments);

@@ -316,10 +316,11 @@ async function uploadReport(answers, comments, facilityName, address, neighborho
         longitude: longitude
     };
 
-    for (let i = 2; i <= 111; i++) {
+    for (let i = 1; i <= 111; i++) {
         payload['q' + i] = answers['q' + i];
-        payload['comment' + i] = comments[i - 2];
+        payload['comment' + i] = comments[i - 1];
     }
+    
 
     const options = {
         method: 'POST',
