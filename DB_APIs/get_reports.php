@@ -7,14 +7,20 @@ header('Content-Type: application/json');
 $userID = $_GET['user_id'] ?? null;
 
 // If userID is not provided, return an error response
-if (!$userID) {
+if ($userID === null) {
     echo json_encode(['status' => 'error', 'message' => 'UserID is required']);
     exit;
 }
 
-// Prepare a SQL statement to fetch reports based on userID
-$stmt = $conn->prepare("SELECT * FROM reports WHERE user_id = ?");
-$stmt->bind_param("i", $userID);
+// Check if user ID is 0 (admin)
+if ($userID == 0) {
+    // If admin, get all reports
+    $stmt = $conn->prepare("SELECT * FROM reports");
+} else {
+    // If not admin, get reports only for that user
+    $stmt = $conn->prepare("SELECT * FROM reports WHERE user_id = ?");
+    $stmt->bind_param("i", $userID);
+}
 
 // Execute the statement
 $stmt->execute();
