@@ -57,30 +57,12 @@
         <div class="max-w-screen-xl mx-auto">
         <h2 class="text-2xl font-semibold mb-5">History of Reports</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Report Card 1 -->
+            <!-- Report Card 1 >
             <div class="bg-white rounded-lg p-4 shadow">
             <h3 class="text-xl font-medium mb-2">Report Title 1</h3>
             <p class="text-gray-700 mb-2">Report Description 1</p>
             <a href="#" class="text-blue-600 hover:underline">View Report</a>
-            </div>
-            <!-- Report Card 2 -->
-            <div class="bg-white rounded-lg p-4 shadow">
-            <h3 class="text-xl font-medium mb-2">Report Title 2</h3>
-            <p class="text-gray-700 mb-2">Report Description 2</p>
-            <a href="#" class="text-blue-600 hover:underline">View Report</a>
-            </div>
-            <!-- Report Card 3 -->
-            <div class="bg-white rounded-lg p-4 shadow">
-            <h3 class="text-xl font-medium mb-2">Report Title 3</h3>
-            <p class="text-gray-700 mb-2">Report Description 3</p>
-            <a href="#" class="text-blue-600 hover:underline">View Report</a>
-            </div>
-            <!-- Report Card 4 -->
-            <div class="bg-white rounded-lg p-4 shadow">
-            <h3 class="text-xl font-medium mb-2">Report Title 4</h3>
-            <p class="text-gray-700 mb-2">Report Description 4</p>
-            <a href="#" class="text-blue-600 hover:underline">View Report</a>
-            </div>
+            </div-->
             <button id="submitButton" class="hidden px-6 py-2 bg-custom-dark-blue hover:bg-custom-dark-blue text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-custom-dark-blue focus:ring-opacity-60 transition duration-300 ease-in-out" onclick="getReport(userSessionId)">
                 Submit
             </button>
