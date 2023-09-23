@@ -32,15 +32,6 @@
           </div>
           <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-custom-dark-blue dark:bg-custom-dark-blue md:dark:bg-custom-dark-blue dark:border-custom-dark-blue">
-              <?php
-              if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == 0) {
-              ?>
-                  <li>
-                      <a href="../register.html" class="uppercase py-2 pl-3 pr-4 text-white md:hover:text-custom-light-blue md:dark:hover:text-custom-light-blue rounded md:bg-transparent md:p-0">Create an account</a>
-                  </li>
-              <?php
-              }
-              ?>
               <li>
                 <a href="https://tharros.net" class="uppercase py-2 pl-3 pr-4 text-white md:hover:text-custom-light-blue md:dark:hover:text-custom-light-blue rounded md:bg-transparent md:p-0">Home</a>
               </li>
@@ -52,10 +43,23 @@
                 <a href="reportHistory.php"
                   class="uppercase py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-custom-light-blue md:p-0 md:dark:hover:text-custom-light-blue dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Report History</a>
               </li>
-              <li>
-                <a href="https://tharros.net/contact/"
-                  class="uppercase py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-custom-light-blue md:p-0 md:dark:hover:text-custom-light-blue dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact us</a>
-              </li>
+              <?php
+              if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == 0) {
+              ?>
+                  <li>
+                      <a href="../register.html" class="uppercase py-2 pl-3 pr-4 text-white md:hover:text-custom-light-blue md:dark:hover:text-custom-light-blue rounded md:bg-transparent md:p-0">
+                        Create an account</a>
+                  </li>
+              <?php
+              } else {
+              ?>
+                  <li>
+                      <a href="https://tharros.net/contact/" class="uppercase py-2 pl-3 pr-4 text-white md:hover:text-custom-light-blue md:dark:hover:text-custom-light-blue rounded md:bg-transparent md:p-0">
+                        Contact us</a>
+                  </li>
+              <?php
+              }
+              ?>
             </ul>
           </div>
         </div>
