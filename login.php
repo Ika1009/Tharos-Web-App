@@ -20,7 +20,7 @@
                 <div class="py-12 bg-custom-dark-blue lg:bg-white flex justify-center lg:justify-start lg:px-12">
                     <div class="cursor-pointer flex items-center">
                         <div><img class="w-12 h-12" src="images/ICON_1-768x767.png" alt="icon"></div>
-                        <div class="text-2xl text-custom-dark-blue md:text-white tracking-wide ml-2 font-semibold">Tharros</div>
+                        <div class="text-2xl text-custom-dark-blue md:text-white dark:md:text-white tracking-wide ml-2 font-semibold">Tharros</div>
                     </div>
                 </div>
                 <div class="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
