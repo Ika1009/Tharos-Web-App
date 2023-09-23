@@ -284,22 +284,13 @@ function getSessionValue() {
     });
 }
 
-async function uploadReport(answers, comments) {
+async function uploadReport(answers, comments, facilityName, address, neighborhood, city, state, zip, latitude, longitude) {
     if (typeof answers !== 'object' || !Object.keys(answers).length || !Array.isArray(comments) || !comments.length) {
         console.error("Invalid answers or comments array");
         return;
     }
-    
-    // Commented this part of code because we don't want to work with cookies 
-
-    /*let userId = getCookie('user_id');
-    if(!userId) {
-        console.error("No user_id, not logged in!");
-        return;
-    }*/
 
     let userId;
-
     try {
         userId = await getSessionValue();
         
@@ -314,7 +305,15 @@ async function uploadReport(answers, comments) {
     }
 
     const payload = {
-        user_id: userId // Add the user_id from the cookie
+        user_id: userId, 
+        facilityName: facilityName,
+        address: address,
+        neighborhood: neighborhood,
+        city: city,
+        state: state,
+        zip: zip,
+        latitude: latitude,
+        longitude: longitude
     };
 
     for (let i = 2; i <= 111; i++) {
@@ -357,7 +356,7 @@ function generatePDF() {
     const longitude = document.getElementById('longitude').value;
     const allAnswers = collectAnswers();
     const allComments = collectComments();
-    uploadReport(allAnswers, allComments);
+    uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude);
 
     var props = {
         outputType: jsPDFInvoiceTemplate.OutputType.Save,
