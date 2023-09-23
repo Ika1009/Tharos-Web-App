@@ -9,10 +9,6 @@ module.exports = {
           'custom-dark-blue': '#0e0d2f',
           'custom-light-blue': '#0bc1f5'
         },
-
-        screens: {
-          'custom': '830px',
-        },
       },
     },
     plugins: [],
