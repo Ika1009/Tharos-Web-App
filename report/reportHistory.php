@@ -88,7 +88,7 @@
         </div>
         </div>
     </section>
-  
+    <script type="text/javascript" src="reportHistory.js"></script> 
 </body>
 
 </html>
