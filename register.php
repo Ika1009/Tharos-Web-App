@@ -65,7 +65,7 @@
                         <form>
                             <div>
                                 <div class="text-sm font-bold text-gray-700 tracking-wide">Full Name</div>
-                                <input name="full_name" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="John Doe">
+                                <input required name="full_name" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="text" placeholder="John Doe">
                             </div>
                             <div class="mt-8">
                                 <div class="flex justify-between items-center">
@@ -73,7 +73,7 @@
                                         Email Address
                                     </div>
                                 </div>
-                                <input name="email" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" placeholder="john.doe@gmail.com">
+                                <input required name="email" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="email" placeholder="john.doe@gmail.com">
                             </div>
                             <div class="mt-8">
                                 <div class="flex justify-between items-center">
@@ -81,7 +81,7 @@
                                         Password
                                     </div>
                                 </div>
-                                <input name="password" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password">
+                                <input required name="password" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password">
                             </div>
                             <div class="mt-8">
                                 <div class="flex justify-between items-center">
@@ -89,10 +89,10 @@
                                         Confirm Password
                                     </div>
                                 </div>
-                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Confirm your password">
+                                <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" required type="password" placeholder="Confirm your password">
                             </div>
                             <div class="mt-10">
-                                <button type="submit" class="bg-custom-dark-blue text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-custom-dark-blue shadow-lg">
+                                <button disabled type="submit" id="submitButton" class="bg-custom-dark-blue text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-custom-dark-blue shadow-lg">
                                     Sign Up
                                 </button>
                             </div>

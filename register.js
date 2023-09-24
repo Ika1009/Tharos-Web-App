@@ -1,4 +1,20 @@
 const signupForm = document.getElementsByTagName("form")[0];
+const inputs = signupForm.querySelectorAll('input');
+const button = document.getElementById('submitButton');
+
+function checkInputs() {
+    let allFilled = true;
+    inputs.forEach(input => {
+        if (input.value === '') {
+            allFilled = false;
+        }
+    });
+    button.disabled = !allFilled;
+}
+
+inputs.forEach(input => {
+    input.addEventListener('input', checkInputs);
+});
 
 signupForm.addEventListener('submit', function(e) {
     e.preventDefault();
