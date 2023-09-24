@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+    if ($_SESSION['user_id'] === 0) {
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -99,3 +104,7 @@
         <script src="register.js"></script>
     </body>
 </html>
+<?php
+    } else {
+        header('Location: login.php');
+    }
