@@ -36,8 +36,6 @@ signupForm.addEventListener('submit', function(e) {
     .then(data => {
         if (data.status === 'success') {
             alert('Signup successful!');
-            form.reset(); // Reset the form
-            checkInputs(); // Check the inputs again to disable the button
         } else {
             alert('Signup failed: ' + data.message);
         }
