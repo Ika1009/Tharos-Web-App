@@ -1,6 +1,5 @@
 const signupForm = document.getElementsByTagName("form")[0];
 const inputs = signupForm.querySelectorAll('input');
-console.log(inputs);
 const button = document.getElementById('submitButton');
 
 function checkInputs() {
@@ -11,6 +10,11 @@ function checkInputs() {
         }
     });
     button.disabled = !allFilled;
+    if (button.disabled) {
+        button.classList.add('cursor-not-allowed', 'opacity-50');
+    } else {
+        button.classList.remove('cursor-not-allowed', 'opacity-50');
+    }
 }
 
 inputs.forEach(input => {
@@ -31,7 +35,11 @@ signupForm.addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
-            alert('Signup successful!');
+            if (inputs[this.length - 2] === inputs[this.length - 1]) {
+                alert('Signup successful!');
+            } else {
+                alert('Passwords does not match!');
+            }
             // Redirect or do something else upon successful signup
         } else {
             alert('Signup failed: ' + data.message);
