@@ -11,9 +11,11 @@ function checkInputs() {
     });
     button.disabled = !allFilled;
     if (button.disabled) {
-        button.classList.add('cursor-not-allowed', 'opacity-50');
+        button.classList.add('cursor-not-allowed', 'bg-gray-400');
+        button.classList.remove('bg-custom-dark-blue');
     } else {
-        button.classList.remove('cursor-not-allowed', 'opacity-50');
+        button.classList.remove('cursor-not-allowed', 'bg-gray-400');
+        button.classList.add('bg-custom-dark-blue');
     }
 }
 

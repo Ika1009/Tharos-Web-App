@@ -92,7 +92,7 @@
                                 <input class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" required type="password" placeholder="Confirm your password">
                             </div>
                             <div class="mt-10">
-                                <button disabled type="submit" id="submitButton" class="bg-custom-dark-blue text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-custom-dark-blue shadow-lg cursor-not-allowed opacity-50">
+                                <button disabled type="submit" id="submitButton" class="bg-custom-dark-blue text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-custom-dark-blue shadow-lg cursor-not-allowed">
                                     Sign Up
                                 </button>
                             </div>
