@@ -34,15 +34,16 @@ signupForm.addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.status === 'success') {
-            if (inputs[this.length - 2] === inputs[this.length - 1]) {
+        if (inputs[this.length - 2] === inputs[this.length - 1]) {
+            if (data.status === 'success') {
                 alert('Signup successful!');
+                form.reset(); // Reset the form
+                checkInputs(); // Check the inputs again to disable the button
             } else {
-                alert('Passwords does not match!');
+                alert('Signup failed: ' + data.message);
             }
-            // Redirect or do something else upon successful signup
         } else {
-            alert('Signup failed: ' + data.message);
+            alert('Passwords does not match!');
         }
     })
     .catch(error => {
