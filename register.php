@@ -59,7 +59,7 @@
                         <div class="text-2xl text-white tracking-wide ml-2 font-semibold">Tharros</div>
                     </div>
                 </div>
-                <div class="px-12 sm:px-24 md:px-48 lg:px-12 xl:px-24 xl:max-w-2xl">
+                <div class="mt-4 px-12 sm:px-24 md:px-48 lg:px-12 xl:px-24 xl:max-w-2xl">
                     <h2 class="text-center text-4xl text-custom-dark-blue font-display font-semibold lg:text-left xl:text-5xl">Sign Up</h2>
                     <div class="mt-12">
                         <form>
