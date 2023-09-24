@@ -1,5 +1,6 @@
 const signupForm = document.getElementsByTagName("form")[0];
 const inputs = signupForm.querySelectorAll('input');
+console.log(inputs);
 const button = document.getElementById('submitButton');
 
 function checkInputs() {
