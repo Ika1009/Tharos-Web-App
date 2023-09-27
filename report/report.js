@@ -144,7 +144,7 @@ for (let i = 2; i <= 111; i++) {
   if (subcategory) {
     const categoryRow = document.createElement('tr');
     const categoryCell = document.createElement('td');
-    categoryCell.className = 'border text-center px-4 py-2 bg-gray-900 font-bold uppercase';
+    categoryCell.className = 'border text-center px-4 py-2 bg-gray-700 font-bold uppercase';
     categoryCell.textContent = subcategory.name;
     categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
     categoryRow.appendChild(categoryCell);
