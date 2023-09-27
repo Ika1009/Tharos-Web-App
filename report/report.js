@@ -133,7 +133,7 @@ for (let i = 2; i <= 111; i++) {
   cellOptions.className = 'border text-center px-4 py-2';
   const selectOptions = document.createElement('select');
   selectOptions.name = `q${i}`;
-  selectOptions.className = 'form-select h-10 w-full text-indigo-600 transition duration-150 ease-in-out';
+  selectOptions.className = 'form-select h-10 w-full rounded-md shadow-sm cursor-pointer';
 
   // Option for Select
   const optionSelect = document.createElement('option');
