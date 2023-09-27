@@ -140,19 +140,22 @@ let index = 1;
 // Create 100 rows and insert them into the table
 for (let i = 2; i <= 111; i++) {
   // Check if there is a category for this question number
-  const category = categories.find(cat => cat.questionNumber === i);
+  const category = categories.find(cat => cat.questionNumber === i && cat.subCategory === "yes");
   if (category) {
     const categoryRow = document.createElement('tr');
     const categoryCell = document.createElement('td');
+    categoryCell.className = 'border px-4 py-2 bg-custom-dark-blue text-white';
+    categoryCell.textContent = category.name;
+    categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
+    categoryRow.appendChild(categoryCell);
+    tableBody.appendChild(categoryRow);
+  }
 
-    if (category.subCategory == "yes") {
-        categoryCell.className = 'border px-4 py-2 bg-stone-400 font-bold';
-    }
-
-    else {
-        categoryCell.className = 'border text-center px-4 py-2 bg-custom-dark-blue text-white';
-    }
-    
+  const subcategory = categories.find(cat => cat.questionNumber === i && cat.subCategory === "no");
+  if (subcategory) {
+    const categoryRow = document.createElement('tr');
+    const categoryCell = document.createElement('td');
+    categoryCell.className = 'border text-center px-4 py-2 bg-neutral-700 font-bold';
     categoryCell.textContent = category.name;
     categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
     categoryRow.appendChild(categoryCell);
