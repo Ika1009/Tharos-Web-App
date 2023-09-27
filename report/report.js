@@ -111,6 +111,22 @@ const questions = [
     "Are redundancy measures taken to ensure continuation of service in the event of failure?",
     "Is additional information attached to the Vulnerability Assessment?"
 ];  
+
+const categories = [
+    { name: "Outer Perimeter", questionNumber: 1 },
+    { name: "Parking", questionNumber: 11 },
+    { name: "Access Controls", questionNumber: 20 },
+    { name: "Mail Handling Procedures" , questionNumber: 35 },
+    { name: "Security / Safety", questionNumber: 42 },
+    { name: "Security Control Room", questionNumber: 66 },
+    { name: "Air and Food Supply", questionNumber: 78 },
+    { name: "Emergency Action / Response Planning", questionNumber: 83 },
+    { name: "Gas", questionNumber: 90 },
+    { name: "Electric", questionNumber: 94 },
+    { name: "Water", questionNumber: 98 },
+    { name: "Fire Suppression / Sprinkler System", questionNumber: 102 },
+    { name: "Telephone", questionNumber: 106}
+];
   
 // Get a reference to the table body where you want to insert the rows
 const tableBody = document.querySelector('tbody');
@@ -118,6 +134,18 @@ let index = 1;
 
 // Create 100 rows and insert them into the table
 for (let i = 2; i <= 111; i++) {
+  // Check if there is a category for this question number
+  const category = categories.find(cat => cat.questionNumber === i);
+  if (category) {
+    const categoryRow = document.createElement('tr');
+    const categoryCell = document.createElement('td');
+    categoryCell.className = 'border text-center px-4 py-2 bg-gray-200 font-bold';
+    categoryCell.textContent = category.name;
+    categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
+    categoryRow.appendChild(categoryCell);
+    tableBody.appendChild(categoryRow);
+  }
+
   const newRow = document.createElement('tr');
 
   // Create cells for the row
