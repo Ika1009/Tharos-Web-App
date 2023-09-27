@@ -129,32 +129,31 @@ for (let i = 2; i <= 111; i++) {
   cellQuestion.className = 'border text-center px-4 py-2';
   cellQuestion.textContent = `${questions[index]}`;
 
-  const cellYes = document.createElement('td');
-  cellYes.className = 'border text-center px-4 py-2';
-  const inputYes = document.createElement('input');
-  inputYes.type = 'radio';
-  inputYes.name = `q${i}`;
-  inputYes.value = 'yes';
-  inputYes.className = 'form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out';
-  cellYes.appendChild(inputYes);
+  const cellOptions = document.createElement('td');
+  cellOptions.className = 'border text-center px-4 py-2';
+  const selectOptions = document.createElement('select');
+  selectOptions.name = `q${i}`;
+  selectOptions.className = 'form-select h-10 w-full text-indigo-600 transition duration-150 ease-in-out';
 
-  const cellNoOption = document.createElement('td');
-  cellNoOption.className = 'border text-center px-4 py-2';
-  const inputNo = document.createElement('input');
-  inputNo.type = 'radio';
-  inputNo.name = `q${i}`;
-  inputNo.value = 'no';
-  inputNo.className = 'form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out';
-  cellNoOption.appendChild(inputNo);
+  // Option for Yes
+  const optionYes = document.createElement('option');
+  optionYes.value = 'yes';
+  optionYes.textContent = 'Yes';
+  selectOptions.appendChild(optionYes);
 
-  const cellNoAnswer = document.createElement('td');
-  cellNoAnswer.className = 'border text-center px-4 py-2';
-  const inputNoAnswer = document.createElement('input');
-  inputNoAnswer.type = 'radio';
-  inputNoAnswer.name = `q${i}`;
-  inputNoAnswer.value = 'no-answer';
-  inputNoAnswer.className = 'form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out';
-  cellNoAnswer.appendChild(inputNoAnswer);
+  // Option for No
+  const optionNo = document.createElement('option');
+  optionNo.value = 'no';
+  optionNo.textContent = 'No';
+  selectOptions.appendChild(optionNo);
+
+  // Option for No Answer
+  const optionNoAnswer = document.createElement('option');
+  optionNoAnswer.value = 'no-answer';
+  optionNoAnswer.textContent = 'No Answer';
+  selectOptions.appendChild(optionNoAnswer);
+
+  cellOptions.appendChild(selectOptions);
 
   const cellComment = document.createElement('td');
   cellComment.className = 'border px-2 py-2';
@@ -166,9 +165,7 @@ for (let i = 2; i <= 111; i++) {
   // Append cells to the row
   newRow.appendChild(cellNo);
   newRow.appendChild(cellQuestion);
-  newRow.appendChild(cellYes);
-  newRow.appendChild(cellNoOption);
-  newRow.appendChild(cellNoAnswer);
+  newRow.appendChild(cellOptions);
   newRow.appendChild(cellComment);
 
   // Append the row to the table body
