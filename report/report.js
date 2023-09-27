@@ -114,18 +114,18 @@ const questions = [
 
 const categories = [
     { name: "Outer Perimeter", questionNumber: 1 },
-    { name: "Parking", questionNumber: 11 },
-    { name: "Access Controls", questionNumber: 20 },
-    { name: "Mail Handling Procedures" , questionNumber: 35 },
-    { name: "Security / Safety", questionNumber: 42 },
-    { name: "Security Control Room", questionNumber: 66 },
-    { name: "Air and Food Supply", questionNumber: 78 },
-    { name: "Emergency Action / Response Planning", questionNumber: 83 },
-    { name: "Gas", questionNumber: 90 },
-    { name: "Electric", questionNumber: 94 },
-    { name: "Water", questionNumber: 98 },
-    { name: "Fire Suppression / Sprinkler System", questionNumber: 102 },
-    { name: "Telephone", questionNumber: 106}
+    { name: "Parking", questionNumber: 12 },
+    { name: "Access Controls", questionNumber: 21 },
+    { name: "Mail Handling Procedures" , questionNumber: 36 },
+    { name: "Security / Safety", questionNumber: 43 },
+    { name: "Security Control Room", questionNumber: 67 },
+    { name: "Air and Food Supply", questionNumber: 79 },
+    { name: "Emergency Action / Response Planning", questionNumber: 84 },
+    { name: "Gas", questionNumber: 91 },
+    { name: "Electric", questionNumber: 95 },
+    { name: "Water", questionNumber: 99 },
+    { name: "Fire Suppression / Sprinkler System", questionNumber: 103 },
+    { name: "Telephone", questionNumber: 107 }
 ];
   
 // Get a reference to the table body where you want to insert the rows
@@ -139,7 +139,7 @@ for (let i = 2; i <= 111; i++) {
   if (category) {
     const categoryRow = document.createElement('tr');
     const categoryCell = document.createElement('td');
-    categoryCell.className = 'border text-center px-4 py-2 bg-gray-200 font-bold';
+    categoryCell.className = 'border text-center px-4 py-2 bg-gray-700 font-bold';
     categoryCell.textContent = category.name;
     categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
     categoryRow.appendChild(categoryCell);
