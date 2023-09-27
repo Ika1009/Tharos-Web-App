@@ -140,7 +140,7 @@ let index = 1;
 // Create 100 rows and insert them into the table
 for (let i = 2; i <= 111; i++) {
   // Check if there is a category for this question number
-  const category = categories.find(cat => cat.questionNumber === i && cat.subCategory === "yes");
+  const category = categories.find(cat => cat.questionNumber === i && cat.subCategory === "no");
   if (category) {
     const categoryRow = document.createElement('tr');
     const categoryCell = document.createElement('td');
@@ -151,7 +151,7 @@ for (let i = 2; i <= 111; i++) {
     tableBody.appendChild(categoryRow);
   }
 
-  const subcategory = categories.find(cat => cat.questionNumber === i && cat.subCategory === "no");
+  const subcategory = categories.find(cat => cat.questionNumber === i && cat.subCategory === "yes");
   if (subcategory) {
     const categoryRow = document.createElement('tr');
     const categoryCell = document.createElement('td');
