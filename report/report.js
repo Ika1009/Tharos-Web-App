@@ -113,24 +113,24 @@ const questions = [
 ];  
 
 const categories = [
-    { name: "Perimeter control", questionNumber: 1, subCategory: no },
-    { name: "Outer Perimeter", questionNumber: 1, subCategory: yes },
-    { name: "Parking", questionNumber: 12, subCategory: yes },
-    { name: "Access to facility", questionNumber: 21, subCategory: no },
-    { name: "Access Controls", questionNumber: 21, subCategory: yes },
-    { name: "Mail Handling Procedures" , questionNumber: 36, subCategory: yes },
-    { name: "Security / Safety", questionNumber: 43, subCategory: yes },
-    { name: "Security Control Room", questionNumber: 67, subCategory: yes },
-    { name: "Health and emergency planning", questionNumber: 79, subCategory: no },
-    { name: "Air and Food Supply", questionNumber: 79, subCategory: yes },
-    { name: "Emergency Action / Response Planning", questionNumber: 84, subCategory: yes },
-    { name: "Utilities", questionNumber: 91, subCategory: no },
-    { name: "Gas", questionNumber: 91, subCategory: yes },
-    { name: "Electric", questionNumber: 95, subCategory: yes },
-    { name: "Water", questionNumber: 99, subCategory: yes },
-    { name: "Fire Suppression / Sprinkler System", questionNumber: 103, subCategory: yes },
-    { name: "Telephone", questionNumber: 107, subCategory: yes },
-    { name: "Supplemental information", questionNumber: 91, subCategory: yes }
+    { name: "Perimeter control", questionNumber: 1, subCategory: "no" },
+    { name: "Outer Perimeter", questionNumber: 1, subCategory: "yes" },
+    { name: "Parking", questionNumber: 12, subCategory: "yes" },
+    { name: "Access to facility", questionNumber: 21, subCategory: "no" },
+    { name: "Access Controls", questionNumber: 21, subCategory: "yes" },
+    { name: "Mail Handling Procedures" , questionNumber: 36, subCategory: "yes" },
+    { name: "Security / Safety", questionNumber: 43, subCategory: "yes" },
+    { name: "Security Control Room", questionNumber: 67, subCategory: "yes" },
+    { name: "Health and emergency planning", questionNumber: 79, subCategory: "no" },
+    { name: "Air and Food Supply", questionNumber: 79, subCategory: "yes" },
+    { name: "Emergency Action / Response Planning", questionNumber: 84, subCategory: "yes" },
+    { name: "Utilities", questionNumber: 91, subCategory: "no" },
+    { name: "Gas", questionNumber: 91, subCategory: "yes" },
+    { name: "Electric", questionNumber: 95, subCategory: "yes" },
+    { name: "Water", questionNumber: 99, subCategory: "yes" },
+    { name: "Fire Suppression / Sprinkler System", questionNumber: 103, subCategory: "yes" },
+    { name: "Telephone", questionNumber: 107, subCategory: "yes" },
+    { name: "Supplemental information", questionNumber: 91, subCategory: "yes" }
 ];
   
 // Get a reference to the table body where you want to insert the rows
