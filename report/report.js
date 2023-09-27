@@ -113,19 +113,24 @@ const questions = [
 ];  
 
 const categories = [
-    { name: "Outer Perimeter", questionNumber: 1 },
-    { name: "Parking", questionNumber: 12 },
-    { name: "Access Controls", questionNumber: 21 },
-    { name: "Mail Handling Procedures" , questionNumber: 36 },
-    { name: "Security / Safety", questionNumber: 43 },
-    { name: "Security Control Room", questionNumber: 67 },
-    { name: "Air and Food Supply", questionNumber: 79 },
-    { name: "Emergency Action / Response Planning", questionNumber: 84 },
-    { name: "Gas", questionNumber: 91 },
-    { name: "Electric", questionNumber: 95 },
-    { name: "Water", questionNumber: 99 },
-    { name: "Fire Suppression / Sprinkler System", questionNumber: 103 },
-    { name: "Telephone", questionNumber: 107 }
+    { name: "Perimeter control", questionNumber: 1, subCategory: no },
+    { name: "Outer Perimeter", questionNumber: 1, subCategory: yes },
+    { name: "Parking", questionNumber: 12, subCategory: yes },
+    { name: "Access to facility", questionNumber: 21, subCategory: no },
+    { name: "Access Controls", questionNumber: 21, subCategory: yes },
+    { name: "Mail Handling Procedures" , questionNumber: 36, subCategory: yes },
+    { name: "Security / Safety", questionNumber: 43, subCategory: yes },
+    { name: "Security Control Room", questionNumber: 67, subCategory: yes },
+    { name: "Health and emergency planning", questionNumber: 79, subCategory: no },
+    { name: "Air and Food Supply", questionNumber: 79, subCategory: yes },
+    { name: "Emergency Action / Response Planning", questionNumber: 84, subCategory: yes },
+    { name: "Utilities", questionNumber: 91, subCategory: no },
+    { name: "Gas", questionNumber: 91, subCategory: yes },
+    { name: "Electric", questionNumber: 95, subCategory: yes },
+    { name: "Water", questionNumber: 99, subCategory: yes },
+    { name: "Fire Suppression / Sprinkler System", questionNumber: 103, subCategory: yes },
+    { name: "Telephone", questionNumber: 107, subCategory: yes },
+    { name: "Supplemental information", questionNumber: 91, subCategory: yes }
 ];
   
 // Get a reference to the table body where you want to insert the rows
@@ -139,7 +144,15 @@ for (let i = 2; i <= 111; i++) {
   if (category) {
     const categoryRow = document.createElement('tr');
     const categoryCell = document.createElement('td');
-    categoryCell.className = 'border text-center px-4 py-2 bg-custom-dark-blue text-white font-bold';
+
+    if (category.subCategory == "yes") {
+        categoryCell.className = 'border px-4 py-2 bg-stone-400 font-bold';
+    }
+
+    else {
+        categoryCell.className = 'border text-center px-4 py-2 bg-custom-dark-blue text-white';
+    }
+    
     categoryCell.textContent = category.name;
     categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
     categoryRow.appendChild(categoryCell);
