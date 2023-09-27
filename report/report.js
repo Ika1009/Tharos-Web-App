@@ -237,17 +237,17 @@ function collectAnswers() {
     let answers = {};
 
     for (let i = 1; i <= 111; i++) {
-        const radioButtonName = `q${i}`;
-        const checkedRadio = document.querySelector(`input[name="${radioButtonName}"]:checked`);
+        const selectName = `q${i}`;
+        const selectedOption = document.querySelector(`select[name="${selectName}"] option:checked`);
 
-        if (checkedRadio) {
-            answers[radioButtonName] = checkedRadio.value;
+        if (selectedOption) {
+            answers[selectName] = selectedOption.value;
         } else {
-            // If no radio button is checked for a question, you can set a default value
-            answers[radioButtonName] = 'no-answer'; 
+            // If no option is selected for a question, you can set a default value
+            answers[selectName] = 'no-answer'; 
         }
     }
-
+    
     return answers;
 }
 
