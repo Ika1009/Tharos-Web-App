@@ -115,7 +115,7 @@
             <tr>
               <th class="w-1/12 px-2 py-2 text-center">No.</th> <!-- Adjusted width and centered text -->
               <th class="w-3/12 px-2 py-2 text-center">Item</th>
-              <th class="w-3/12 px-2 py-2 text-center" colspan="3">Answer</th>
+              <th class="w-3/12 px-2 py-2 text-center">Answer</th>
               <th class="w-5/12 px-2 py-2 text-center">Comment</th> <!-- Adjusted width and centered text -->
             </tr>
           </thead>
@@ -124,14 +124,6 @@
               <td class="border px-2 py-2 text-center">1.</td> <!-- Adjusted width and centered text -->
               <td class="border text-center px-2 py-2">Is the outer perimeter well defined with physical barriers?</td>
               <td class="border px-2 py-2 text-center">
-                <input
-                  type="radio"
-                  name="q1"
-                  value="yes"
-                  class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
-                />
-              </td>
-              <td class="border px-2 py-2 text-center" colspan="3">
                 <select name="q1" class="form-select h-10 rounded-md shadow-sm w-full">
                     <option value="" selected disabled>Select an option</option>
                     <option value="yes">Yes</option>
