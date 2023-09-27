@@ -123,7 +123,7 @@
             <tr>
               <td class="border px-2 py-2 text-center">1.</td> <!-- Adjusted width and centered text -->
               <td class="border text-center px-2 py-2">Is the outer perimeter well defined with physical barriers?</td>
-              <td class="border px-2 py-2 text-center">
+              <td class="border px-4 py-2 text-center">
                 <select name="q1" class="form-select h-10 rounded-md shadow-sm w-full">
                     <option value="" selected disabled>Select an option</option>
                     <option value="yes">Yes</option>

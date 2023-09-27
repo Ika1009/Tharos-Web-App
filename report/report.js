@@ -135,6 +135,14 @@ for (let i = 2; i <= 111; i++) {
   selectOptions.name = `q${i}`;
   selectOptions.className = 'form-select h-10 w-full text-indigo-600 transition duration-150 ease-in-out';
 
+  // Option for Select
+  const optionSelect = document.createElement('option');
+  optionSelect.value = '';
+  optionSelect.textContent = 'Select an option';
+  optionSelect.setAttribute('selected', ''); // Set the selected attribute
+  optionSelect.setAttribute('disabled', ''); // Set the disabled attribute
+  selectOptions.appendChild(optionSelect);
+
   // Option for Yes
   const optionYes = document.createElement('option');
   optionYes.value = 'yes';
