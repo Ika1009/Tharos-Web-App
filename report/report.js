@@ -156,7 +156,7 @@ for (let i = 2; i <= 111; i++) {
     const categoryRow = document.createElement('tr');
     const categoryCell = document.createElement('td');
     categoryCell.className = 'border text-center px-4 py-2 bg-neutral-700 font-bold';
-    categoryCell.textContent = category.name;
+    categoryCell.textContent = subcategory.name;
     categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
     categoryRow.appendChild(categoryCell);
     tableBody.appendChild(categoryRow);
