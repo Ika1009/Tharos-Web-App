@@ -451,8 +451,6 @@ function generatePDF() {
                 allAnswers[`q${index + 1}`],
                 allComments[index]
             ])),
-            invDescLabel: "Invoice Note",
-            invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
         },
         footer: {
             text: "The invoice is created on a computer and is valid without the signature and stamp.",
@@ -471,30 +469,33 @@ function generatePDF() {
 function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.addPage();
 
-    // Set text color to light blue (RGB values: 255, 0, 0)
-    pdf.jsPDFDocObject.setTextColor(173, 216, 230);
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
 
-    // Set font size to 22 points
-    pdf.jsPDFDocObject.setFontSize(20);
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
 
     // Add text to the PDF
-    pdf.jsPDFDocObject.text('Site description', 20, 30);
+    pdf.jsPDFDocObject.text('Site description', 20, 40);
 
+    // Set text color to black (RGB values: 0, 0, 0)
     pdf.jsPDFDocObject.setTextColor(0, 0, 0);
 
-    // Set font size to 12 points
-    pdf.jsPDFDocObject.setFontSize(12);
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
 
     // Add text to the PDF
-    const text1 = `This is a physical security assessment of ${facilityName}, ${address} using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`;
+    const text1 = `This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`;
 
-    const margin = 10;
+    const margin = 20;
     const maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
 
     // Use splitTextToSize to split lines and ensure they fit within page width
     const finalText = pdf.jsPDFDocObject.splitTextToSize(text1, maxWidth);
 
-    pdf.jsPDFDocObject.text(finalText, margin, 40);
+    pdf.jsPDFDocObject.text(finalText, margin, 50);
+
+    pdf.jsPDFDocObject.addImage("../images/house.jpg", 'jpg', 60, 80, 40, 60);
 
     for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
         pdf.jsPDFDocObject.setPage(i);
