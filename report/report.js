@@ -481,15 +481,15 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.setTextColor(0, 0, 0);
 
-    // Set font size to 22 points
-    pdf.jsPDFDocObject.setFontSize(14);
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
 
     // Add text to the PDF
     pdf.jsPDFDocObject.text(`This is a physical security assessment of using principles of Crime Prevention Through 
     Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights.
     It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`, 20, 40);
 
-    for (let i = 1; i <= pdf.pagesNumber; i++) {
+    for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
         pdf.jsPDFDocObject.setPage(i);
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
