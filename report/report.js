@@ -414,33 +414,7 @@ function generatePDF() {
         fileName: "Report - Tharros Security Solutions",
         orientationLandscape: false,
         compress: true,
-        logo: {
-            src: "../images/ICON_1-768x767.png",
-            type: 'PNG', //optional, when src= data:uri (nodejs case)
-            width: 26.66, //aspect ratio = width/height
-            height: 26.66,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
-        business: {
-            name: "Tharros Security Solutions",
-            address: "9420 Towne Square Ave, Suite 4 Blue Ash, Ohio 45242",
-            phone: "(+513) 964-0836",
-            email: "ContactUs@Tharros.net",
-            website: "https://tharros.net/",
-        },
-        contact: {
-            label: "Invoice issued for:",
-            name: facilityName,
-            address: address,
-            otherInfo: `${state}, ${city}, ${neighborhood}, ${zip}, ${longitude}, ${latitude}`
-        },
         invoice: {
-            label: "Invoice #: ",
-            num: 1,
-            invGenDate: `Invoice Date: ${new Date()}`,
             headerBorder: false,
             tableBodyBorder: false,
             header: [
@@ -493,10 +467,30 @@ function generatePDF() {
 }
 
 function addWatermark(pdf, logoSrc) {
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 9; i++) {
         pdf.jsPDFDocObject.setPage(i);
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
+
+    pdf.addPage();
+
+    // Set text color to light blue (RGB values: 255, 0, 0)
+    pdf.setTextColor(173, 216, 230);
+
+    // Set font size to 22 points
+    pdf.setFontSize(20);
+
+    // Add text to the PDF
+    pdf.text('Site description', 20, 30);
+
+    pdf.setTextColor(0, 0, 0);
+
+    // Set font size to 22 points
+    pdf.setFontSize(14);
+
+    // Add text to the PDF
+    pdf.text(`This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational 
+    Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`, 20, 40);
 }
 
 function toggleMenu() {
