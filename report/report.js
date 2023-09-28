@@ -485,19 +485,11 @@ function generatePDF() {
         pageLabel: "Page ",
     };
 
-    // Assuming you have a base64 encoded image:
-    let imgData = 'data:image/jpg;base64,...'; // your base64 encoded image here
+    var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
-    pdf = new jsPDF('p', 'mm', 'a4'); // Create a new PDF document
+    addWatermark(pdfObject, "../images/watermark.png");
 
-    // Add the image to the PDF to set it as a background
-    pdf.addImage(imgData, 'JPG', 0, 0, 210, 297); // A4 size is 210mm x 297mm
-
-    pdf.jsPDFInvoiceTemplate.default({ ...props });
-
-    addWatermark(pdf, "../images/watermark.png");
-
-    pdf.jsPDFDocObject.save("Report"); 
+    pdfObject.jsPDFDocObject.save("Report"); 
 }
 
 function addWatermark(pdf, logoSrc) {
