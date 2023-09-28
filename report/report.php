@@ -13,6 +13,31 @@
     <title>Report - Tharros Security Solutions, LLC</title>
     <link rel="icon" href="../images/ICON_1-768x767.png" type="image/x-icon">
     <link href="../dist/output.css" rel="stylesheet" />
+    <style>
+      .hasImage:hover section {
+        background-color: rgba(5, 5, 5, 0.4);
+      }
+      .hasImage:hover button:hover {
+        background: rgba(5, 5, 5, 0.45);
+      }
+
+      #overlay p,
+      i {
+        opacity: 0;
+      }
+
+      #overlay.draggedover {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+      #overlay.draggedover p,
+      #overlay.draggedover i {
+        opacity: 1;
+      }
+
+      .group:hover .group-hover\:text-blue-800 {
+        color: #2b6cb0;
+      }
+    </style>
 </head>
 
 <body>
