@@ -409,7 +409,7 @@ function generatePDF() {
     uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude);
 
     var props = {
-        outputType: jsPDFInvoiceTemplate.OutputType.Save,
+        outputType: jsPDFInvoiceTemplate,
         returnJsPDFDocObject: true,
         fileName: "Report - Tharros Security Solutions",
         orientationLandscape: false,
@@ -487,21 +487,17 @@ function generatePDF() {
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
-    // Commented this part of code because quality of image is low
+    addWatermark(pdfObject, "../images/watermark.png");
 
-    //addWatermark(pdfObject, "../images/watermark.png");
-
-    //pdfObject.jsPDFDocObject.save("Report"); 
+    pdfObject.jsPDFDocObject.save("Report"); 
 }
 
-// Commented this part of code because quality of image is low
-
-/*function addWatermark(pdf, logoSrc) {
+function addWatermark(pdf, logoSrc) {
     for (let i = 1; i <= 5; i++) {
         pdf.jsPDFDocObject.setPage(i);
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
-}*/
+}
 
 function toggleMenu() {
     const navbarCta = document.getElementById('navbar-cta');
