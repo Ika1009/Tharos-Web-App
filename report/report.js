@@ -485,13 +485,18 @@ function addWatermark(pdf, logoSrc) {
     // Set font size to 12 points
     pdf.jsPDFDocObject.setFontSize(12);
 
-    console.log(facilityName);
-
     // Add text to the PDF
-    pdf.jsPDFDocObject.text(`This is a physical security assessment of ${facilityName}, ${address} 
-    using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention.
-    This assessment was requested by Milos Heights.
-    It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`, 20, 40);
+    const text1 = `This is a physical security assessment of ${facilityName}, ${address} using principles of Crime 
+    Prevention Through Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by 
+    Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`;
+
+    const margin = 10;
+    const maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
+
+    // Use splitTextToSize to split lines and ensure they fit within page width
+    const finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, margin); 
 
     for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
         pdf.jsPDFDocObject.setPage(i);
