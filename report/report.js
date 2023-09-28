@@ -132,6 +132,15 @@ const categories = [
     { name: "Telephone", questionNumber: 107, subCategory: "yes" },
     { name: "Supplemental information", questionNumber: 111, subCategory: "no" }
 ];
+
+const facilityName = document.getElementById('name').value;
+const address = document.getElementById('address').value;
+const neighborhood = document.getElementById('neighborhood').value;
+const city = document.getElementById('city').value;
+const state = document.querySelector('select').value;
+const zip = document.getElementById('zip').value;
+const latitude = document.getElementById('latitude').value;
+const longitude = document.getElementById('longitude').value;
   
 // Get a reference to the table body where you want to insert the rows
 const tableBody = document.querySelector('tbody');
@@ -396,14 +405,6 @@ async function uploadReport(answers, comments, facilityName, address, neighborho
 
 
 function generatePDF() {
-    const facilityName = document.getElementById('name').value;
-    const address = document.getElementById('address').value;
-    const neighborhood = document.getElementById('neighborhood').value;
-    const city = document.getElementById('city').value;
-    const state = document.querySelector('select').value;
-    const zip = document.getElementById('zip').value;
-    const latitude = document.getElementById('latitude').value;
-    const longitude = document.getElementById('longitude').value;
     const allAnswers = collectAnswers();
     const allComments = collectComments();
     uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude);
