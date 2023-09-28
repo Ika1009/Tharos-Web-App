@@ -504,13 +504,19 @@ function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.setFontSize(16);
 
     // Add text to the PDF
-    pdf.jsPDFDocObject.text('What is CPTED', 20, 150);
+    pdf.jsPDFDocObject.text('What is CPTED', 20, 160);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
 
     text = "Crime Prevention Through Environmental Design (CPTED) is defined as the proper design and effective use of the built environment that can lead to a reduction in the fear and incidents of crime, and an improvement in the quality of life."
 
     finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
 
-    pdf.jsPDFDocObject.text(finalText, margin, 160);
+    pdf.jsPDFDocObject.text(finalText, margin, 170);
 
     for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
         pdf.jsPDFDocObject.setPage(i);
