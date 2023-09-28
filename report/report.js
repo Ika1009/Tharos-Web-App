@@ -468,11 +468,6 @@ function generatePDF() {
 }
 
 function addWatermark(pdf, logoSrc) {
-    for (let i = 1; i <= 9; i++) {
-        pdf.jsPDFDocObject.setPage(i);
-        pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
-    }
-
     pdf.jsPDFDocObject.addPage();
 
     // Set text color to light blue (RGB values: 255, 0, 0)
@@ -490,8 +485,14 @@ function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.setFontSize(14);
 
     // Add text to the PDF
-    pdf.jsPDFDocObject.text(`This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational 
-    Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`, 20, 40);
+    pdf.jsPDFDocObject.text(`This is a physical security assessment of using principles of Crime Prevention Through 
+    Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights.
+    It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`, 20, 40);
+
+    for (let i = 1; i <= pdf.pagesNumber; i++) {
+        pdf.jsPDFDocObject.setPage(i);
+        pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
+    }
 }
 
 function toggleMenu() {
