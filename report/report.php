@@ -158,7 +158,17 @@
             </button>
         </div> 
       </div>
-    </div>    
+    </div>
+    
+    <div class="flex flex-col items-center">
+        <!-- Styled File Input -->
+        <label class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600">
+            <span>Choose a picture</span>
+            <input type="file" class="hidden" id="file" accept="image/*" onchange="previewImage(event)">
+        </label>
+        <!-- Image preview -->
+        <img id="preview" class="mt-4 h-32" />
+    </div>
 
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
