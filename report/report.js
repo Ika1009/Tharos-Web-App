@@ -495,7 +495,7 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text(finalText, margin, 50);
 
-    pdf.jsPDFDocObject.addImage("../images/house.jpg", 'jpg', 60, 70, 60, 80);
+    pdf.jsPDFDocObject.addImage("../images/house.jpg", 'jpg', 70, 70, 60, 80);
 
     for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
         pdf.jsPDFDocObject.setPage(i);
