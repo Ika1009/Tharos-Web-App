@@ -1,4 +1,4 @@
-const { jsPDF } = require('jspdf');
+import { jsPDF } from 'jspdf';
 
 const questions = [
     "Is the outer perimeter well defined with physical barriers?",
