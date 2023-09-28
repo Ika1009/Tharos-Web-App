@@ -463,7 +463,7 @@ function generatePDF() {
 
     addWatermark(pdfObject, "../images/watermark.png");
 
-    pdfObject.jsPDFDocObject.save("Report"); 
+    pdfObject.jsPDFDocObject.save("Report - Tharros Security Solutions"); 
 }
 
 function addWatermark(pdf, logoSrc) {
@@ -472,24 +472,24 @@ function addWatermark(pdf, logoSrc) {
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
 
-    pdf.addPage();
+    pdf.jsPDFDocObject.addPage();
 
     // Set text color to light blue (RGB values: 255, 0, 0)
-    pdf.setTextColor(173, 216, 230);
+    pdf.jsPDFDocObject.setTextColor(173, 216, 230);
 
     // Set font size to 22 points
-    pdf.setFontSize(20);
+    pdf.jsPDFDocObject.setFontSize(20);
 
     // Add text to the PDF
-    pdf.text('Site description', 20, 30);
+    pdf.jsPDFDocObject.text('Site description', 20, 30);
 
-    pdf.setTextColor(0, 0, 0);
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
 
     // Set font size to 22 points
-    pdf.setFontSize(14);
+    pdf.jsPDFDocObject.setFontSize(14);
 
     // Add text to the PDF
-    pdf.text(`This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational 
+    pdf.jsPDFDocObject.text(`This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational 
     Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`, 20, 40);
 }
 
