@@ -133,14 +133,7 @@ const categories = [
     { name: "Supplemental information", questionNumber: 111, subCategory: "no" }
 ];
 
-const facilityName = document.getElementById('name').value;
-const address = document.getElementById('address').value;
-const neighborhood = document.getElementById('neighborhood').value;
-const city = document.getElementById('city').value;
-const state = document.querySelector('select').value;
-const zip = document.getElementById('zip').value;
-const latitude = document.getElementById('latitude').value;
-const longitude = document.getElementById('longitude').value;
+let facilityName, neighborhood, city, state, zip, latitude, longitude;
   
 // Get a reference to the table body where you want to insert the rows
 const tableBody = document.querySelector('tbody');
@@ -405,6 +398,14 @@ async function uploadReport(answers, comments, facilityName, address, neighborho
 
 
 function generatePDF() {
+    facilityName = document.getElementById('name').value;
+    address = document.getElementById('address').value;
+    neighborhood = document.getElementById('neighborhood').value;
+    city = document.getElementById('city').value;
+    state = document.querySelector('select').value;
+    zip = document.getElementById('zip').value;
+    latitude = document.getElementById('latitude').value;
+    longitude = document.getElementById('longitude').value;
     const allAnswers = collectAnswers();
     const allComments = collectComments();
     uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude);
@@ -485,8 +486,9 @@ function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.setFontSize(12);
 
     // Add text to the PDF
-    pdf.jsPDFDocObject.text(`This is a physical security assessment of using principles of Crime Prevention Through 
-    Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights.
+    pdf.jsPDFDocObject.text(`This is a physical security assessment of ${facilityName}, ${address} 
+    using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention.
+    This assessment was requested by Milos Heights.
     It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`, 20, 40);
 
     for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
