@@ -494,7 +494,7 @@ function addWatermark(pdf, logoSrc) {
     const maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
 
     // Use splitTextToSize to split lines and ensure they fit within page width
-    const finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+    const finalText = pdf.jsPDFDocObject.splitTextToSize(text1, maxWidth);
 
     pdf.jsPDFDocObject.text(finalText, margin, margin); 
 
