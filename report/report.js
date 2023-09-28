@@ -1,3 +1,5 @@
+const { jsPDF } = require('jspdf');
+
 const questions = [
     "Is the outer perimeter well defined with physical barriers?",
     "Does the outer perimeter have key card access control for employees?",
