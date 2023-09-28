@@ -485,17 +485,32 @@ function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.setFontSize(10);
 
     // Add text to the PDF
-    const text1 = `This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`;
+    let text = `This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`;
 
     const margin = 20;
     const maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
 
     // Use splitTextToSize to split lines and ensure they fit within page width
-    const finalText = pdf.jsPDFDocObject.splitTextToSize(text1, maxWidth);
+    let finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
 
     pdf.jsPDFDocObject.text(finalText, margin, 50);
 
     pdf.jsPDFDocObject.addImage("../images/house.jpg", 'jpg', 70, 70, 60, 80);
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('What is CPTED', 20, 150);
+
+    text = "Crime Prevention Through Environmental Design (CPTED) is defined as the proper design and effective use of the built environment that can lead to a reduction in the fear and incidents of crime, and an improvement in the quality of life."
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 160);
 
     for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
         pdf.jsPDFDocObject.setPage(i);
