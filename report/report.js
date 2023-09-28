@@ -485,6 +485,8 @@ function addWatermark(pdf, logoSrc) {
     // Set font size to 12 points
     pdf.jsPDFDocObject.setFontSize(12);
 
+    console.log(facilityName);
+
     // Add text to the PDF
     pdf.jsPDFDocObject.text(`This is a physical security assessment of ${facilityName}, ${address} 
     using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention.
