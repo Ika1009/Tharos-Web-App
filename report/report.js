@@ -501,7 +501,7 @@ function toggleMenu() {
 }
 
 function previewImage(event) {
-    const preview = document.getElementById('preview');
+    const preview = document.getElementById('dropzone-file');
     const file = event.target.files[0];
     const reader = new FileReader();
     
