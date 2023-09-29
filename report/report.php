@@ -13,31 +13,7 @@
     <title>Report - Tharros Security Solutions, LLC</title>
     <link rel="icon" href="../images/ICON_1-768x767.png" type="image/x-icon">
     <link href="../dist/output.css" rel="stylesheet" />
-    <style>
-      .hasImage:hover section {
-        background-color: rgba(5, 5, 5, 0.4);
-      }
-      .hasImage:hover button:hover {
-        background: rgba(5, 5, 5, 0.45);
-      }
-
-      #overlay p,
-      i {
-        opacity: 0;
-      }
-
-      #overlay.draggedover {
-        background-color: rgba(255, 255, 255, 0.7);
-      }
-      #overlay.draggedover p,
-      #overlay.draggedover i {
-        opacity: 1;
-      }
-
-      .group:hover .group-hover\:text-blue-800 {
-        color: #2b6cb0;
-      }
-    </style>
+    <link href="report.css" rel="stylesheet">
 </head>
 
 <body>
@@ -292,13 +268,7 @@
       </div>
     </div>
 
-    <button onclick="tryJSPDF()">
-      Try jsPDF
-    </button>
-
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
     <script src="report.js"></script>
 </body>
 
