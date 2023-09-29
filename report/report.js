@@ -459,7 +459,7 @@ function generatePDF() {
         pageLabel: "Page ",
     };
 
-    var pdfObject = jsPDFInvoiceTemplate.default({ ...pdf }, { ...props });
+    var pdfObject = jsPDFInvoiceTemplate.default({ ...pdf , ...props });
 
     addWatermark(pdfObject, "../images/watermark.png");
 
