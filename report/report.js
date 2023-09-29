@@ -473,7 +473,7 @@ function generatePDF() {
     fetch('finalPage.pdf')
       .then(response => response.arrayBuffer())
         .then(async existingPdfBytes => {
-            const mergedPdfBytes = await mergePDFs(pdfObject.jsPDFInvoiceTemplate, existingPdfBytes);
+            const mergedPdfBytes = await mergePDFs(pdfObject, existingPdfBytes);
             mergedPdfBytes.jsPDFInvoiceTemplate.save("Report - Tharros Security Solutions");
     });
 }
@@ -911,7 +911,7 @@ async function mergePDFs(jspdfDocument, existingPdfBytes) {
   const existingPdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
 
   // Create a new PDF from the jsPDF document
-  const jspdfPdfBytes = new Uint8Array(jspdfDocument.output('arraybuffer'));
+  const jspdfPdfBytes = new Uint8Array(jspdfDocument.jsPDFInvoiceTemplate.output('arraybuffer'));
   const jspdfPdfDoc = await PDFLib.PDFDocument.load(jspdfPdfBytes);
 
   // Create a new PDF document to combine both
