@@ -17,17 +17,29 @@ $comments = [];
 for ($i = 1; $i <= 111; $i++) {
     $answer = $_POST['q' . $i] ?? null;
     $comment = $_POST['comment' . $i] ?? null;
-    
+
     $answers[] = $answer;
     $comments[] = $comment;
 }
 
-
 $answersJson = json_encode($answers);
 $commentsJson = json_encode($comments);
 
+// Handling file upload
+$image = $_FILES['image'] ?? null;
+
+if ($image) {
+    $targetDir = "uploads/"; // Specify the directory where the file will be uploaded
+    $targetFile = $targetDir . basename($image['name']);
+    if (move_uploaded_file($image['tmp_name'], $targetFile)) {
+        echo "File uploaded successfully!";
+    } else {
+        echo "File upload failed!";
+    }
+}
+
 try {
-    $stmt = $pdo->prepare("INSERT INTO reports (user_id, facilityName, address, neighborhood, city, state, zip, latitude, longitude, answers, comments) VALUES (:user_id, :facilityName, :address, :neighborhood, :city, :state, :zip, :latitude, :longitude, :answers, :comments)");
+    $stmt = $pdo->prepare("INSERT INTO reports (user_id, facilityName, address, neighborhood, city, state, zip, latitude, longitude, answers, comments, image) VALUES (:user_id, :facilityName, :address, :neighborhood, :city, :state, :zip, :latitude, :longitude, :answers, :comments, :image)");
 
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $stmt->bindParam(':facilityName', $facilityName, PDO::PARAM_STR);
@@ -40,9 +52,10 @@ try {
     $stmt->bindParam(':longitude', $longitude, PDO::PARAM_STR);
     $stmt->bindParam(':answers', $answersJson, PDO::PARAM_STR);
     $stmt->bindParam(':comments', $commentsJson, PDO::PARAM_STR);
+    $stmt->bindParam(':image', $targetFile, PDO::PARAM_STR); // bind the image file path to the statement
 
     if ($stmt->execute()) {
-        echo "Report saved successfully!";
+        echo "Report and image saved successfully!";
     } else {
         echo "Failed to execute statement";
     }

@@ -335,66 +335,73 @@ function getSessionValue() {
     });
 }
 
-async function uploadReport(answers, comments, facilityName, address, neighborhood, city, state, zip, latitude, longitude) {
-    if (typeof answers !== 'object' || !Object.keys(answers).length || !Array.isArray(comments) || !comments.length) {
-        console.error("Invalid answers or comments array");
-        return;
-    }
+async function uploadReport(answers, comments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, file) {
+  if (typeof answers !== 'object' || !Object.keys(answers).length || !Array.isArray(comments) || !comments.length) {
+      console.error("Invalid answers or comments array");
+      return;
+  }
 
-    let userId;
-    try {
-        userId = await getSessionValue();
-        
-        if(!userId) {
-            console.error("No user_id, not logged in!");
-            return;
-        }
-        
-    } catch (error) {
-        console.error('Error in main:', error);
-        return;
-    }
+  let userId;
+  try {
+      userId = await getSessionValue();
+      
+      if(!userId) {
+          console.error("No user_id, not logged in!");
+          return;
+      }
+      
+  } catch (error) {
+      console.error('Error in main:', error);
+      return;
+  }
 
-    const payload = {
-        user_id: userId, 
-        facilityName: facilityName,
-        address: address,
-        neighborhood: neighborhood,
-        city: city,
-        state: state,
-        zip: zip,
-        latitude: latitude,
-        longitude: longitude
-    };
+  const payload = {
+      user_id: userId, 
+      facilityName: facilityName,
+      address: address,
+      neighborhood: neighborhood,
+      city: city,
+      state: state,
+      zip: zip,
+      latitude: latitude,
+      longitude: longitude
+  };
 
-    for (let i = 1; i <= 111; i++) {
-        payload['q' + i] = answers['q' + i];
-        payload['comment' + i] = comments[i - 1];
-    }
-    
+  for (let i = 1; i <= 111; i++) {
+      payload['q' + i] = answers['q' + i];
+      payload['comment' + i] = comments[i - 1];
+  }
 
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams(payload).toString()
-    };
+  // Creating a FormData object to hold all the payload data including the file.
+  const formData = new FormData();
+  Object.keys(payload).forEach(key => {
+      formData.append(key, payload[key]);
+  });
+  // Appending the file to the FormData object
+  formData.append('image', file);
 
-    fetch('../DB_APIs/upload_report.php', options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(data => {
-            console.log('Data successfully uploaded:', data);
-        })
-        .catch(error => {
-            console.error('There was a problem uploading the report:', error);
-        });
+  // Setting up the fetch options
+  const options = {
+      method: 'POST',
+      body: formData
+  };
+
+  // Sending the request
+  fetch('../DB_APIs/upload_report.php', options)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.text();
+      })
+      .then(data => {
+          console.log('Data successfully uploaded:', data);
+      })
+      .catch(error => {
+          console.error('There was a problem uploading the report:', error);
+      });
 }
+
 
 
 function generatePDF() {
@@ -408,7 +415,7 @@ function generatePDF() {
     longitude = document.getElementById('longitude').value;
     const allAnswers = collectAnswers();
     const allComments = collectComments();
-    uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude);
+    uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, file);
 
     var props = {
         outputType: jsPDFInvoiceTemplate,
