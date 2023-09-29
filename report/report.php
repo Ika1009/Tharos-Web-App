@@ -70,23 +70,23 @@
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Facility Name">
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Facility Name" required>
           </div>
           <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="address">Address</label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="address" type="text" placeholder="Street Address">
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="address" type="text" placeholder="Street Address" required>
           </div>
           <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="neighborhood">Neighborhood</label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="neighborhood" type="text" placeholder="Your Neighborhood">
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="neighborhood" type="text" placeholder="Your Neighborhood" required>
           </div>
           <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="city">City / Township</label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="Your City / Township">
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="Your City / Township" required>
           </div>
           <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2">State</label>
-              <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                   <option value="">Select a state</option>
                   <option value="ohio">Ohio</option>
                   <option value="alaska">Alaska</option>
@@ -96,15 +96,15 @@
           </div>
           <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="zip">Zip</label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zip" type="number" placeholder="Your Zip">
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zip" type="number" placeholder="Your Zip" required>
           </div>
           <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="latitude">Latitude</label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="latitude" type="number" placeholder="Your Latitude">
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="latitude" type="number" placeholder="Your Latitude" required>
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="longitude">Longitude</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="longitude" type="number" placeholder="Your Longitude">
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="longitude" type="number" placeholder="Your Longitude" required>
         </div>
       </form>
     </div>
@@ -129,7 +129,7 @@
               <p class="mb-3 font-semibold text-gray-900 flex flex-wrap justify-center">
                 <span>Drag and drop your</span>&nbsp;<span>file anywhere or</span>
               </p>
-              <input id="hidden-input" type="file" multiple class="hidden" />
+              <input id="hidden-input" type="file" multiple class="hidden"  required/>
               <button id="button" class="mt-2 rounded-sm px-3 py-1 bg-gray-200 hover:bg-gray-300 focus:shadow-outline focus:outline-none">
                 Upload a file
               </button>
