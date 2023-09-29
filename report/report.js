@@ -474,6 +474,7 @@ function generatePDF() {
 }
 
 function addWatermark(pdf, logoSrc) {
+    // Add new page
     pdf.jsPDFDocObject.addPage();
 
     // Set text color to light blue (RGB values: 11, 193, 245)
@@ -494,15 +495,15 @@ function addWatermark(pdf, logoSrc) {
     // Add text to the PDF
     let text = `This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`;
 
-    const margin = 20;
-    const maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
+    let margin = 20;
+    let maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
 
     // Use splitTextToSize to split lines and ensure they fit within page width
     let finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
 
-    pdf.jsPDFDocObject.text(finalText, margin, 50);
+    pdf.jsPDFDocObject.text(finalText, margin, 47);
 
-    pdf.jsPDFDocObject.addImage("../images/house.jpg", 'jpg', 70, 70, 60, 80);
+    pdf.jsPDFDocObject.addImage("../images/house.jpg", 'jpg', 70, 59, 60, 80);
 
     // Set text color to light blue (RGB values: 11, 193, 245)
     pdf.jsPDFDocObject.setTextColor(11, 193, 245);
@@ -511,7 +512,7 @@ function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.setFontSize(16);
 
     // Add text to the PDF
-    pdf.jsPDFDocObject.text('What is CPTED', 20, 160);
+    pdf.jsPDFDocObject.text('What is CPTED', 20, 148);
 
     // Set text color to black (RGB values: 0, 0, 0)
     pdf.jsPDFDocObject.setTextColor(0, 0, 0);
@@ -523,9 +524,290 @@ function addWatermark(pdf, logoSrc) {
 
     finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
 
-    pdf.jsPDFDocObject.text(finalText, margin, 170);
+    pdf.jsPDFDocObject.text(finalText, margin, 155);
 
-    for (let i = 1; i <= pdf.pagesNumber + 1; i++) {
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('CPTED Strategies', 20, 183);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Natural Surveillance', 20, 190);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 197, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = "Natural surveillance is a design concept directed primarily at discouraging criminal activity by ensuring that public spaces are easily observable. Formal surveillance techniques may involve hidden cameras, but physical features that maximize the visibility of people, parking areas and entrances to the property. The overall sense of safety improves when people can easily see others and be seen. Examples:"
+
+    margin = 30;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - margin - 20;
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 198.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 221, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Doors and windows that look out onto the street and parking areas.', 45, 222.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 226, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Sidewalks and streets that are open and inviting to pedestrians.', 45, 227.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 231, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Unobstructed sight lines.', 45, 232.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 236, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Open design concepts (avoid hidden spaces).', 45, 237.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 241, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Front porches and activity areas that encourage visibility with the street and neighbors.', 45, 242.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 246, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Adequate nighttime lighting.', 45, 247.35);
+
+    // Add new page 
+    pdf.jsPDFDocObject.addPage();
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Natural Access Control', 20, 40);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 47, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Natural access control is a design concept directed primarily at decreasing crime opportunities by discouraging access to crime targets and creating a perception of risk to offenders. This is a logicalextension of the idea of territorial reinforcement. It is gained by designing streets, sidewalks, building entrances, and neighborhood gateways to clearly indicate public routes, and by discouraging access to private areas with structural elements. Examples:';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 48.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 75, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Avoid walling off your entire property.', 45, 76.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 80, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Access should be limited. (Who has access to the building)', 45, 81.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 85, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Entrances, exits, fences, landscaping, and lighting.', 45, 86.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Territorial Reinforcement', 20, 102);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 109, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Historically the idea of territorial reinforcement lies in the need to defend an area against attack. In our context our hope is that the homeowner develops a sense of territorial control for your property, while potential offenders, perceiving this control, are discouraged from committing a crime. Examples:';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 110.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 128, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Landscaping', 45, 129.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 133, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Pavement designs', 45, 134.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 138, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Fences without compromising natural surveillance.', 45, 139.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 143, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Property designed with elements that encourage interaction with neighbors and the public.', 45, 144.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Maintenance and Image', 20, 160);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 167, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'The maintenance and image of a property shows ownership of the property. Crime is more prevalent in areas that are not maintained. Also known as the Broken Window Theory. Examples:';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 168.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 182, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Well maintained yard.', 45, 183.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 187, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Exterior lighting.', 45, 188.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 192, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Maintained property.', 45, 193.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Order Maintenance', 20, 209);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 216, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Attending to minor unacceptable acts and providing measures that clearly state acceptable behavior.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 217.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 226, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Signage that state expectations and the consequences of unacceptable behavior.', 45, 227.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Activity Support', 20, 243);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 250, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Design formal and informal support for increasing the level of human activity in a particular space as a crime prevention strategy.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 251.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 260, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Outside dining.', 45, 261.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 265, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Street vendors.', 45, 266.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 270, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Taxi stands.', 45, 271.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 275, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Designated areas for pickup and drop-off.', 45, 276.35);
+
+    // Add new page
+    pdf.jsPDFDocObject.addPage();
+
+    pdf.jsPDFDocObject.addImage("../images/finalPage.png", 'png', 0, 0, 210, 297);
+
+    for (let i = 1; i <= pdf.pagesNumber + 2; i++) {
         pdf.jsPDFDocObject.setPage(i);
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
