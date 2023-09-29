@@ -415,7 +415,7 @@ function generatePDF() {
     longitude = document.getElementById('longitude').value;
     const allAnswers = collectAnswers();
     const allComments = collectComments();
-    uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, FILE);
+    uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, file);
 
     var props = {
         outputType: jsPDFInvoiceTemplate,
