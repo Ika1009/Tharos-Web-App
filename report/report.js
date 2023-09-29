@@ -493,11 +493,13 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text(finalText, margin, 47);
 
-    const parts = FILE.name.split('.');
-    const extension = parts[parts.length - 1].toLowerCase();
-    const element = document.getElementById("gallery").firstElementChild.id;
+    if (FILE !== undefined) {
+      const parts = FILE.name.split('.');
+      const extension = parts[parts.length - 1].toLowerCase();
+      const element = document.getElementById("gallery").firstElementChild.id;
 
-    pdf.jsPDFDocObject.addImage(`${element}`, `${extension}`, 70, 59, 60, 80);
+      pdf.jsPDFDocObject.addImage(`${element}`, `${extension}`, 70, 59, 60, 80);
+    }
 
     // Set text color to light blue (RGB values: 11, 193, 245)
     pdf.jsPDFDocObject.setTextColor(11, 193, 245);
