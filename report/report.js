@@ -473,7 +473,7 @@ function generatePDF() {
     fetch('finalPage.pdf')
       .then(response => response.arrayBuffer())
         .then(async existingPdfBytes => {
-            const mergedPdfBytes = await mergePDFs(pdfObject, existingPdfBytes);
+            const mergedPdfBytes = await mergePDFs(pdfObject.jsPDFInvoiceTemplate, existingPdfBytes);
             mergedPdfBytes.jsPDFInvoiceTemplate.save("Report - Tharros Security Solutions");
     });
 }
