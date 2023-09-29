@@ -213,6 +213,35 @@
       </li>
     </template>
 
+    <div class="space-y-4 max-w-md mx-auto">
+
+        <div>
+            <label for="textbox1" class="block text-sm font-medium text-gray-700">Signage and Wayfinding</label>
+            <input id="textbox1" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
+        </div>
+
+        <div>
+            <label for="textbox2" class="block text-sm font-medium text-gray-700">Perimeter Observations</label>
+            <input id="textbox2" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
+        </div>
+
+        <div>
+            <label for="textbox3" class="block text-sm font-medium text-gray-700">Exterior Lighting Observations</label>
+            <input id="textbox3" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
+        </div>
+
+        <div>
+            <label for="textbox4" class="block text-sm font-medium text-gray-700">Activity Generators Observations</label>
+            <input id="textbox4" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
+        </div>
+
+        <div>
+            <label for="textbox5" class="block text-sm font-medium text-gray-700">Recommendations</label>
+            <input id="textbox5" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
+        </div>
+
+    </div>
+
     <div class="container mx-auto" id="formTop">
       <div class="overflow-x-auto">
         <table class="w-4/5 min-w-full">
