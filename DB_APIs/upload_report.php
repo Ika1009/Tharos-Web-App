@@ -51,8 +51,6 @@ if ($image) {
     }
 }
 
-
-
 try {
     $stmt = $pdo->prepare("INSERT INTO reports (user_id, facilityName, address, neighborhood, city, state, zip, latitude, longitude, answers, comments, image) VALUES (:user_id, :facilityName, :address, :neighborhood, :city, :state, :zip, :latitude, :longitude, :answers, :comments, :image)");
 
@@ -67,7 +65,7 @@ try {
     $stmt->bindParam(':longitude', $longitude, PDO::PARAM_STR);
     $stmt->bindParam(':answers', $answersJson, PDO::PARAM_STR);
     $stmt->bindParam(':comments', $commentsJson, PDO::PARAM_STR);
-    $stmt->bindParam(':image', $targetFile, PDO::PARAM_STR); // bind the image file path to the statement
+    $stmt->bindParam(':image', $dbPath, PDO::PARAM_STR); // bind the correct relative path to the statement
 
     if ($stmt->execute()) {
         echo "Report and image saved successfully!";
