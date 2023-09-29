@@ -900,3 +900,9 @@ document.getElementById("cancel").onclick = () => {
   empty.classList.remove("hidden");
   gallery.append(empty);
 };
+
+function tryJSPDF() {
+  var pdf = new jsPDF();
+  pdf.addPage();
+  pdf.save();
+}
