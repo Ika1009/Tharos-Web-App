@@ -497,6 +497,8 @@ function addWatermark(pdf, logoSrc) {
     const extension = parts[parts.length - 1].toLowerCase();
     const elements = document.getElementsByName("userImage");
 
+    console.log(elements.id);
+
     pdf.jsPDFDocObject.addImage(`${elements.id}`, `${extension}`, 70, 59, 60, 80);
 
     // Set text color to light blue (RGB values: 11, 193, 245)
