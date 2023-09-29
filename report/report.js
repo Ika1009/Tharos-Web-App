@@ -495,12 +495,9 @@ function addWatermark(pdf, logoSrc) {
 
     const parts = FILE.name.split('.');
     const extension = parts[parts.length - 1].toLowerCase();
-    const elements = document.getElementsByName("userImage");
+    const element = document.getElementById("gallery").firstElementChild.id;
 
-    console.log(elements[0]);
-    console.log(elements[0].id);
-
-    pdf.jsPDFDocObject.addImage(`${elements[0].id}`, `${extension}`, 70, 59, 60, 80);
+    pdf.jsPDFDocObject.addImage(`${element}`, `${extension}`, 70, 59, 60, 80);
 
     // Set text color to light blue (RGB values: 11, 193, 245)
     pdf.jsPDFDocObject.setTextColor(11, 193, 245);
@@ -960,7 +957,6 @@ function addFile(target, file) {
 
   clone.querySelector("h1").textContent = file.name;
   clone.querySelector("li").id = objectURL;
-  clone.querySelector("li").name = "userImage";
   clone.querySelector(".delete").dataset.target = objectURL;
   clone.querySelector(".size").textContent = 
     file.size > 1048576 
