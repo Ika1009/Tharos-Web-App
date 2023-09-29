@@ -29,7 +29,13 @@ $commentsJson = json_encode($comments);
 $image = $_FILES['image'] ?? null;
 
 if ($image) {
-    $targetDir = "uploads/"; // Specify the directory where the file will be uploaded
+    $targetDir = __DIR__ . "/../../uploads/"; // Move two directories back and use absolute path for the upload directory
+
+    // Check if directory exists, if not create it
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0755, true); // the third parameter "true" allows the creation of nested directories
+    }
+
     $targetFile = $targetDir . basename($image['name']);
     if (move_uploaded_file($image['tmp_name'], $targetFile)) {
         echo "File uploaded successfully!";
@@ -37,6 +43,7 @@ if ($image) {
         echo "File upload failed!";
     }
 }
+
 
 try {
     $stmt = $pdo->prepare("INSERT INTO reports (user_id, facilityName, address, neighborhood, city, state, zip, latitude, longitude, answers, comments, image) VALUES (:user_id, :facilityName, :address, :neighborhood, :city, :state, :zip, :latitude, :longitude, :answers, :comments, :image)");
