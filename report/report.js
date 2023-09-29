@@ -902,7 +902,7 @@ document.getElementById("cancel").onclick = () => {
 };
 
 function tryJSPDF() {
-  var pdf = new jsPDF();
+  var pdf = new window.jspdf.jsPDF();
   pdf.addPage();
-  pdf.save();
+  pdf.save('sample.pdf');
 }
