@@ -213,34 +213,34 @@
       </li>
     </template>
 
-    <div class="bg-white p-8 rounded-xl shadow-lg max-w-xl w-full space-y-6">
+    <div class="bg-white p-8 rounded-xl shadow-lg max-w-xl w-4/5 space-y-6">
 
         <h1 class="text-2xl font-bold text-center text-gray-800">Enter Your Details</h1>
 
         <div class="space-y-4">
             <div>
-                <label for="textbox1" class="block text-sm font-medium text-gray-700">Signage and Wayfinding</label>
-                <input id="textbox1" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+                <label for="textarea1" class="block text-sm font-medium text-gray-700">Textarea 1</label>
+                <textarea id="textarea1" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
             </div>
 
             <div>
-                <label for="textbox2" class="block text-sm font-medium text-gray-700">Perimeter Observations</label>
-                <input id="textbox2" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+                <label for="textarea2" class="block text-sm font-medium text-gray-700">Textarea 2</label>
+                <textarea id="textarea2" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
             </div>
 
             <div>
-                <label for="textbox3" class="block text-sm font-medium text-gray-700">Exterior Lighting Observations</label>
-                <input id="textbox3" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+                <label for="textarea3" class="block text-sm font-medium text-gray-700">Textarea 3</label>
+                <textarea id="textarea3" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
             </div>
 
             <div>
-                <label for="textbox4" class="block text-sm font-medium text-gray-700">Activity Generators Observations</label>
-                <input id="textbox4" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+                <label for="textarea4" class="block text-sm font-medium text-gray-700">Textarea 4</label>
+                <textarea id="textarea4" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
             </div>
 
             <div>
-                <label for="textbox5" class="block text-sm font-medium text-gray-700">Recommendations</label>
-                <input id="textbox5" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+                <label for="textarea5" class="block text-sm font-medium text-gray-700">Textarea 5</label>
+                <textarea id="textarea5" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
             </div>
 
         </div>
