@@ -605,10 +605,6 @@ gallery.onclick = ({ target }) => {
   }
 };
 
-document.getElementById("submit").onclick = () => {
-  alert(`Submitted File:\n${FILE ? FILE.name : 'No file selected.'}`);
-};
-
 document.getElementById("cancel").onclick = () => {
   gallery.innerHTML = ''; // Clear the gallery
   FILE = undefined;
