@@ -29,20 +29,26 @@ $commentsJson = json_encode($comments);
 $image = $_FILES['image'] ?? null;
 
 if ($image) {
-    $targetDir = __DIR__ . "/../../uploads/"; // Move two directories back and use absolute path for the upload directory
+    $relativeDir = "../../uploads/"; // Relative directory
+    $absoluteDir = __DIR__ . "/../../uploads/"; // Absolute directory path
 
     // Check if directory exists, if not create it
-    if (!is_dir($targetDir)) {
-        mkdir($targetDir, 0755, true); // the third parameter "true" allows the creation of nested directories
+    if (!is_dir($absoluteDir)) {
+        mkdir($absoluteDir, 0755, true); // the third parameter "true" allows the creation of nested directories
     }
 
-    $targetFile = $targetDir . basename($image['name']);
+    $targetFile = $absoluteDir . basename($image['name']);
     if (move_uploaded_file($image['tmp_name'], $targetFile)) {
         echo "File uploaded successfully!";
+
+        // Now save the relative path in the database
+        $dbPath = $relativeDir . basename($image['name']);
+        // Use $dbPath for database operations
     } else {
         echo "File upload failed!";
     }
 }
+
 
 
 try {
