@@ -312,14 +312,6 @@ function collectComments() {
     return comments;
 }
 
-// Commented this part of code because we don't want to work with cookies 
-
-/*function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}*/
-
 function getSessionValue() {
     return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
@@ -401,8 +393,6 @@ async function uploadReport(answers, comments, facilityName, address, neighborho
           console.error('There was a problem uploading the report:', error);
       });
 }
-
-
 
 function generatePDF() {
     facilityName = document.getElementById('name').value;
@@ -505,8 +495,9 @@ function addWatermark(pdf, logoSrc) {
 
     const parts = FILE.name.split('.');
     const extension = parts[parts.length - 1].toLowerCase();
+    const elements = document.getElementsByName("userImage");
 
-    pdf.jsPDFDocObject.addImage(`../../uploads/${FILE.name}`, `${extension}`, 70, 59, 60, 80);
+    pdf.jsPDFDocObject.addImage(`${elements.id}`, `${extension}`, 70, 59, 60, 80);
 
     // Set text color to light blue (RGB values: 11, 193, 245)
     pdf.jsPDFDocObject.setTextColor(11, 193, 245);
