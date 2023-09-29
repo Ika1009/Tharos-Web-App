@@ -40,10 +40,12 @@ if ($image) {
     $targetFile = $absoluteDir . basename($image['name']);
     if (move_uploaded_file($image['tmp_name'], $targetFile)) {
         echo "File uploaded successfully!";
+        // Construct the correct relative path based on the web server's document root
+        $docRoot = $_SERVER['DOCUMENT_ROOT']; // Get the document root
+        $relativePath = str_replace($docRoot, '', $targetFile); // Remove the document root from the absolute path
 
         // Now save the relative path in the database
-        $dbPath = $relativeDir . basename($image['name']);
-        // Use $dbPath for database operations
+        $dbPath = $relativePath;
     } else {
         echo "File upload failed!";
     }
