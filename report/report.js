@@ -893,6 +893,9 @@ function addWatermark(pdf, logoSrc) {
     // Set font size to 12 points
     pdf.jsPDFDocObject.setFontSize(12);
 
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
     finalText = pdf.jsPDFDocObject.splitTextToSize(values[0], maxWidth);
 
     pdf.jsPDFDocObject.text(finalText, margin, 55);
@@ -907,12 +910,15 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Perimeter Observations", 20, 40);
 
-     // Set font size to 12 points
-     pdf.jsPDFDocObject.setFontSize(12);
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
 
-     finalText = pdf.jsPDFDocObject.splitTextToSize(values[1], maxWidth);
- 
-     pdf.jsPDFDocObject.text(finalText, margin, 55);
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[1], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
 
     pdf.jsPDFDocObject.addPage();
 
@@ -924,12 +930,15 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Exterior Lighting Observations", 20, 40);
 
-     // Set font size to 12 points
-     pdf.jsPDFDocObject.setFontSize(12);
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
 
-     finalText = pdf.jsPDFDocObject.splitTextToSize(values[2], maxWidth);
- 
-     pdf.jsPDFDocObject.text(finalText, margin, 55);
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[2], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
 
     pdf.jsPDFDocObject.addPage();
 
@@ -941,12 +950,15 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Activity Generators Observations", 20, 40);
 
-     // Set font size to 12 points
-     pdf.jsPDFDocObject.setFontSize(12);
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
 
-     finalText = pdf.jsPDFDocObject.splitTextToSize(values[3], maxWidth);
- 
-     pdf.jsPDFDocObject.text(finalText, margin, 55);
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[3], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
 
     pdf.jsPDFDocObject.addPage();
 
@@ -958,12 +970,15 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Recommendations", 20, 40);
 
-     // Set font size to 12 points
-     pdf.jsPDFDocObject.setFontSize(12);
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
 
-     finalText = pdf.jsPDFDocObject.splitTextToSize(values[4], maxWidth);
- 
-     pdf.jsPDFDocObject.text(finalText, margin, 55);
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[4], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
 
     // Add new page
     pdf.jsPDFDocObject.addPage();
