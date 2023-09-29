@@ -924,7 +924,189 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Recommendations", 20, 40);
 
-    for (let i = 1; i <= pdf.pagesNumber + 8; i++) {
+    // Add new page
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Other Considerations:', 20, 40);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Create an Emergency Operations Plan that is defined by these four mission areas.', 33, 47);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('1. Deterrence', 39, 55);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 60);
+
+    margin = 56;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - margin - 25;
+
+    text = 'Deterrence means the capabilities necessary to avoid, prevent or stop a threatened or real mass shooting before it occurs.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 60);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 68.5);
+
+    text = 'Capabilities might include a program designed to uncover threats before they materialize, such as creating an educational program or a process to review the social media accounts of “at risk” individuals. They might include implementing overt physical security measures designed to deter a mass shooter from ever considering your property as a target.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 68.5);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('2. Protection', 39, 85);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 90);
+
+    text = 'All the physical and procedural capabilities designed to stop or inhibit a mass shooter from successfully carrying out plans if your property is targeted';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 90);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 98.5);
+
+    text = 'Capabilities may include hardening-up the physical structure of your institution, installing active countermeasures or a procedural response such as an enhanced lockdown. Capabilities may also include designating specific rooms as protected “safe rooms” pre-staged with certain equipment and designating and training staff members or volunteers for an armed response.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 98.5);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('3. Response', 39, 118.5);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 123.5);
+
+    text = 'How individuals, staff members and those in leadership or assigned positions should respond to a mass shooter making entry into your house of worship, school or business.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 123.5);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 132);
+
+    text = 'Include the immediate implementation of the lockdown procedures and the active countermeasures detailed under the protection mission, immediate (or automated) communication with law enforcement, immediate response by individuals to run, hide or fight, and the activation of on-scene armed responders using the procedures also outlined in the protection mission.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 132);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('4. Mitigation', 39, 152);
+    
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 157);
+
+    text = 'A plan designed to mitigate the loss of life when an attack has occurred.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 157);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 162);
+
+    text = 'Example: implementation of a triage system and emergency first-aid treatment of victims by on-scene personnel before emergency services arrive on the scene.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 162);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Conclusion:', 20, 250);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    pdf.jsPDFDocObject.text('It is proven that if a building is secure and well maintained, it is less likely to experience criminality.', 43.5, 250);
+
+    text = 'Addressing the recommendations in this report can eliminate the risk or reduce the impact if an incident occurs. We  believe that if schools, houses of worship, and public and private businesses were to implement the steps outlined  here, criminals would give up plans entirely';
+
+    margin = 20;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin - 5;
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 254);
+
+    for (let i = 1; i <= pdf.pagesNumber + 9; i++) {
         pdf.jsPDFDocObject.setPage(i);
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
