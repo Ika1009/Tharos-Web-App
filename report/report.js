@@ -470,7 +470,7 @@ function generatePDF() {
 
     addWatermark(pdfObject, "../images/watermark.png");
 
-    pdfObject.jsPDFInvoiceTemplate.save("Report - Tharros Security Solutions");
+    pdfObject.jsPDFDocObject.save("Report - Tharros Security Solutions");
 }
 
 function addWatermark(pdf, logoSrc) {
