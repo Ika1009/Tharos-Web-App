@@ -29,7 +29,7 @@ $commentsJson = json_encode($comments);
 $image = $_FILES['image'] ?? null;
 
 if ($image) {
-    $relativeDir = "../../uploads/"; // Relative directory
+    $relativeDir = "uploads/"; // Relative directory
     $absoluteDir = __DIR__ . "/../../uploads/"; // Absolute directory path
 
     // Check if directory exists, if not create it
