@@ -213,33 +213,37 @@
       </li>
     </template>
 
-    <div class="space-y-4 max-w-md mx-auto">
+    <div class="bg-white p-8 rounded-xl shadow-lg max-w-xl w-full space-y-6">
 
-        <div>
-            <label for="textbox1" class="block text-sm font-medium text-gray-700">Signage and Wayfinding</label>
-            <input id="textbox1" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
+        <h1 class="text-2xl font-bold text-center text-gray-800">Enter Your Details</h1>
+
+        <div class="space-y-4">
+            <div>
+                <label for="textbox1" class="block text-sm font-medium text-gray-700">Signage and Wayfinding</label>
+                <input id="textbox1" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+            </div>
+
+            <div>
+                <label for="textbox2" class="block text-sm font-medium text-gray-700">Perimeter Observations</label>
+                <input id="textbox2" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+            </div>
+
+            <div>
+                <label for="textbox3" class="block text-sm font-medium text-gray-700">Exterior Lighting Observations</label>
+                <input id="textbox3" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+            </div>
+
+            <div>
+                <label for="textbox4" class="block text-sm font-medium text-gray-700">Activity Generators Observations</label>
+                <input id="textbox4" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+            </div>
+
+            <div>
+                <label for="textbox5" class="block text-sm font-medium text-gray-700">Recommendations</label>
+                <input id="textbox5" type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text">
+            </div>
+
         </div>
-
-        <div>
-            <label for="textbox2" class="block text-sm font-medium text-gray-700">Perimeter Observations</label>
-            <input id="textbox2" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
-        </div>
-
-        <div>
-            <label for="textbox3" class="block text-sm font-medium text-gray-700">Exterior Lighting Observations</label>
-            <input id="textbox3" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
-        </div>
-
-        <div>
-            <label for="textbox4" class="block text-sm font-medium text-gray-700">Activity Generators Observations</label>
-            <input id="textbox4" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
-        </div>
-
-        <div>
-            <label for="textbox5" class="block text-sm font-medium text-gray-700">Recommendations</label>
-            <input id="textbox5" type="text" class="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-opacity-50 focus:border-blue-300" placeholder="Enter text">
-        </div>
-
     </div>
 
     <div class="container mx-auto" id="formTop">
