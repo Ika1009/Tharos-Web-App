@@ -407,6 +407,9 @@ function generatePDF() {
     const allComments = collectComments();
     uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, FILE);
 
+    var pdf = new window.jspdf.jsPDF();
+    pdf.addPage();
+
     var props = {
         outputType: jsPDFInvoiceTemplate,
         returnJsPDFDocObject: true,
@@ -456,7 +459,7 @@ function generatePDF() {
         pageLabel: "Page ",
     };
 
-    var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
+    var pdfObject = jsPDFInvoiceTemplate.default({ ...pdf }, { ...props });
 
     addWatermark(pdfObject, "../images/watermark.png");
 
