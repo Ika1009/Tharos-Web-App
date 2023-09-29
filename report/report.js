@@ -805,9 +805,132 @@ function addWatermark(pdf, logoSrc) {
     // Add new page
     pdf.jsPDFDocObject.addPage();
 
-    pdf.jsPDFDocObject.addImage("../images/finalPage.png", 'png', 0, 0, 210, 297);
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
 
-    for (let i = 1; i <= pdf.pagesNumber + 2; i++) {
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Wayfinding', 20, 40);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'The concept of wayfinding is to move pedestrians and/or vehicles to and from or through buildings and sites using roadway transitions, sidewalks, signage, and focal points.';
+
+    margin = 20;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 48);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Activity Generators', 20, 70);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Items or activities placed in strategic locations where natural surveillance is limited or unavailable. Activity generators help to attract capable individuals to the areas where they can over watch and deter potential crime. Bicycle racks, gazebos, benches, dining, or designated smoking areas encourage activity in the established environment. ';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 78);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Lighting', 20, 110);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Lighting is the number one deterrent for crime during nighttime hours. A well-lit parking lot, pathway, exterior building, or outdoor facility by a white light source with good uniformity contributes to the perceived safety of pedestrians. High Intensity Discharge bulbs such as Metal Halide and High Pressure Sodium offer good lighting; however, LED provides the best coverage. LED lighting has quickly become the dominant bulb on the market, offering superior light emittance, uniformity, and color rendering for witness identification. ';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 118);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Natural v. Organized v. Mechanical', 20, 160);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'CPTED focuses on the organic and natural modification of the built environment to accomplish its strategies. Organized strategies utilize the human element to complement the natural goal by way of security guards, receptionist, and property managers. Mechanical elements can be built to further harden a target. Security gates, security cameras, and alarm systems all contribute to the mechanical strategy of crime prevention. ';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 168);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Signage and Wayfinding", 20, 40);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Perimeter Observations", 20, 40);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Exterior Lighting Observations", 20, 40);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Activity Generators Observations", 20, 40);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Recommendations", 20, 40);
+
+    for (let i = 1; i <= pdf.pagesNumber + 8; i++) {
         pdf.jsPDFDocObject.setPage(i);
         pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
     }
