@@ -133,7 +133,7 @@ const categories = [
     { name: "Supplemental information", questionNumber: 111, subCategory: "no" }
 ];
 
-let facilityName, neighborhood, city, state, zip, latitude, longitude;
+let facilityName, neighborhood, city, state, zip, latitude, longitude, values = [];
   
 // Get a reference to the table body where you want to insert the rows
 const tableBody = document.querySelector('tbody');
@@ -405,6 +405,10 @@ function generatePDF() {
     longitude = document.getElementById('longitude').value;
     const allAnswers = collectAnswers();
     const allComments = collectComments();
+    for (let i = 1; i <= 5; i++) {
+        const textareaValue = document.getElementById(`textarea${i}`).value;
+        values.push(textareaValue);
+    }
     uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, FILE);
 
     var props = {
@@ -886,6 +890,13 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Signage and Wayfinding", 20, 40);
 
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[0], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
+
     pdf.jsPDFDocObject.addPage();
 
     // Set text color to light blue (RGB values: 11, 193, 245)
@@ -895,6 +906,13 @@ function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.setFontSize(16);
 
     pdf.jsPDFDocObject.text("Perimeter Observations", 20, 40);
+
+     // Set font size to 12 points
+     pdf.jsPDFDocObject.setFontSize(12);
+
+     finalText = pdf.jsPDFDocObject.splitTextToSize(values[1], maxWidth);
+ 
+     pdf.jsPDFDocObject.text(finalText, margin, 55);
 
     pdf.jsPDFDocObject.addPage();
 
@@ -906,6 +924,13 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Exterior Lighting Observations", 20, 40);
 
+     // Set font size to 12 points
+     pdf.jsPDFDocObject.setFontSize(12);
+
+     finalText = pdf.jsPDFDocObject.splitTextToSize(values[2], maxWidth);
+ 
+     pdf.jsPDFDocObject.text(finalText, margin, 55);
+
     pdf.jsPDFDocObject.addPage();
 
     // Set text color to light blue (RGB values: 11, 193, 245)
@@ -916,6 +941,13 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text("Activity Generators Observations", 20, 40);
 
+     // Set font size to 12 points
+     pdf.jsPDFDocObject.setFontSize(12);
+
+     finalText = pdf.jsPDFDocObject.splitTextToSize(values[3], maxWidth);
+ 
+     pdf.jsPDFDocObject.text(finalText, margin, 55);
+
     pdf.jsPDFDocObject.addPage();
 
     // Set text color to light blue (RGB values: 11, 193, 245)
@@ -925,6 +957,13 @@ function addWatermark(pdf, logoSrc) {
     pdf.jsPDFDocObject.setFontSize(16);
 
     pdf.jsPDFDocObject.text("Recommendations", 20, 40);
+
+     // Set font size to 12 points
+     pdf.jsPDFDocObject.setFontSize(12);
+
+     finalText = pdf.jsPDFDocObject.splitTextToSize(values[4], maxWidth);
+ 
+     pdf.jsPDFDocObject.text(finalText, margin, 55);
 
     // Add new page
     pdf.jsPDFDocObject.addPage();
