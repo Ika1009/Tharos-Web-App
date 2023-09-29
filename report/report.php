@@ -215,39 +215,39 @@
 
     <div class="container mx-auto p-6">
 
-      <div class="bg-white p-8 rounded-xl shadow-lg max-w-xl w-4/5 space-y-6">
+      <div class="bg-white p-8 rounded-xl shadow-lg max-w-xl space-y-6">
 
           <h1 class="text-2xl font-bold text-center text-gray-800">Enter Your Details</h1>
 
           <div class="space-y-4">
               <div>
-                  <label for="textarea1" class="block text-sm font-medium text-gray-700">Textarea 1</label>
+                  <label for="textarea1" class="block text-sm font-medium text-gray-700">Signage and Wayfinding</label>
                   <textarea id="textarea1" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
-                  <label for="textarea2" class="block text-sm font-medium text-gray-700">Textarea 2</label>
+                  <label for="textarea2" class="block text-sm font-medium text-gray-700">Perimeter Observations</label>
                   <textarea id="textarea2" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
-                  <label for="textarea3" class="block text-sm font-medium text-gray-700">Textarea 3</label>
+                  <label for="textarea3" class="block text-sm font-medium text-gray-700">Exterior Lighting Observations</label>
                   <textarea id="textarea3" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
-                  <label for="textarea4" class="block text-sm font-medium text-gray-700">Textarea 4</label>
+                  <label for="textarea4" class="block text-sm font-medium text-gray-700">Activity Generators Observations</label>
                   <textarea id="textarea4" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
-                  <label for="textarea5" class="block text-sm font-medium text-gray-700">Textarea 5</label>
+                  <label for="textarea5" class="block text-sm font-medium text-gray-700">Recommendations</label>
                   <textarea id="textarea5" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
           </div>
       </div>
-      
+
     </div>
 
     <div class="container mx-auto" id="formTop">
