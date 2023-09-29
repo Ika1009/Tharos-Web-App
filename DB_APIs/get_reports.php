@@ -23,12 +23,22 @@ try {
         $stmt->execute([':userID' => $userID]);
     }
 
-    $reports = $stmt->fetchAll();
+    $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Add the image path to each report
+    foreach ($reports as &$report) {
+        // Assuming your image path column in the database is named 'image'
+        $imagePath = $report['image'];
+
+        // You can add the full URL here if needed
+        // Example: $imagePath = 'https://example.com/uploads/' . $imagePath;
+
+        $report['image'] = $imagePath;
+    }
 
     // Return the reports in JSON format
     echo json_encode(['status' => 'success', 'reports' => $reports]);
 } catch (\PDOException $e) {
     echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
-
 ?>

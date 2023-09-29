@@ -144,6 +144,11 @@ async function getReport(userId) {
             address.classList.add('text-gray-700', 'mb-2');
             address.textContent = report.address || `Report Description ${report.id}`;
 
+            const image = document.createElement('img');
+            image.src = report.image; // Set the image source to the report's image path
+            image.alt = 'Report Image';
+            image.classList.add('max-w-full', 'my-2'); // Add styling for the image
+
             const link = document.createElement('a');
             link.href = `#`; // Prevent page navigation
             link.classList.add('text-blue-600', 'hover:underline');
@@ -155,6 +160,7 @@ async function getReport(userId) {
 
             card.appendChild(title);
             card.appendChild(address);
+            card.appendChild(image); // Add the image to the card
             card.appendChild(link);
 
             reportContainer.appendChild(card);
@@ -164,6 +170,7 @@ async function getReport(userId) {
         console.error('Error fetching the reports:', error);
     }
 }
+
 
 getReport(userSessionId);
 
