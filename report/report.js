@@ -462,6 +462,8 @@ function generatePDF() {
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
+    addWatermark(pdfObject, "../images/watermark.png");
+
     fetch('firstPage.pdf')
       .then(response => response.arrayBuffer())
         .then(async existingPdfBytes => {
@@ -481,10 +483,6 @@ function generatePDF() {
             // Release the URL
             window.URL.revokeObjectURL(url);
     });
-
-    //addWatermark(pdfObject, "../images/watermark.png");
-
-    //pdfObject.jsPDFDocObject.save("Report - Tharros Security Solutions");
 }
 
 function addWatermark(pdf, logoSrc) {

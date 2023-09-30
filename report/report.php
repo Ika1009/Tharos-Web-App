@@ -303,7 +303,6 @@
     </div>
 
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
     <script src="report.js"></script>
 </body>
