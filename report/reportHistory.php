@@ -78,6 +78,7 @@
         var userSessionId = <?php echo $_SESSION['user_id']; ?>;
     </script>
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
     <script type="text/javascript" src="reportHistory.js"></script> 
 </body>
 
