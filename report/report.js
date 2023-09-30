@@ -462,9 +462,16 @@ function generatePDF() {
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
-    addWatermark(pdfObject, "../images/watermark.png");
+    fetch('firstPage.pdf')
+      .then(response => response.arrayBuffer())
+        .then(async existingPdfBytes => {
+            const mergedPdfBytes = await mergePDFs(pdfObject, existingPdfBytes);
+            mergedPdfBytes.jsPDFDocObject.save("Report - Tharros Security Solutions");
+    });
 
-    pdfObject.jsPDFDocObject.save("Report - Tharros Security Solutions");
+    //addWatermark(pdfObject, "../images/watermark.png");
+
+    //pdfObject.jsPDFDocObject.save("Report - Tharros Security Solutions");
 }
 
 function addWatermark(pdf, logoSrc) {
@@ -1255,3 +1262,32 @@ document.getElementById("cancel").onclick = () => {
   empty.classList.remove("hidden");
   gallery.append(empty);
 };
+
+async function mergePDFs(jspdfDocument, existingPdfBytes) {
+    // Load the existing PDF as a Uint8Array
+    const existingPdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
+  
+    // Create a new PDF from the jsPDF document
+    const jspdfPdfBytes = new Uint8Array(jspdfDocument.jsPDFDocObject.output('arraybuffer'));
+    const jspdfPdfDoc = await PDFLib.PDFDocument.load(jspdfPdfBytes);
+  
+    // Create a new PDF document to combine both
+    const mergedPdf = await PDFLib.PDFDocument.create();
+  
+    // Copy pages from the existing PDF to the merged one
+    const existingPdfPages = await mergedPdf.copyPages(existingPdfDoc, existingPdfDoc.getPageIndices());
+    for (const page of existingPdfPages) {
+        mergedPdf.addPage(page);
+    }
+  
+    // Copy pages from the jsPDF PDF to the merged one
+    const jspdfPages = await mergedPdf.copyPages(jspdfPdfDoc, jspdfPdfDoc.getPageIndices());
+    for (const page of jspdfPages) {
+        mergedPdf.addPage(page);
+    }
+  
+    // Serialize the merged PDF to bytes
+    const mergedPdfBytes = await mergedPdf.save();
+  
+    return mergedPdfBytes;
+}
