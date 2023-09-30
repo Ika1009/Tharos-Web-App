@@ -466,7 +466,20 @@ function generatePDF() {
       .then(response => response.arrayBuffer())
         .then(async existingPdfBytes => {
             const mergedPdfBytes = await mergePDFs(pdfObject, existingPdfBytes);
-            mergedPdfBytes.save("Report - Tharros Security Solutions");
+            // Create a Blob from the merged PDF bytes
+            const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+
+            // Create a URL for the Blob and use it to create a downloadable link
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Report - Tharros Security Solutions.pdf';
+            document.body.appendChild(a);
+            a.click();
+
+            // Release the URL
+            window.URL.revokeObjectURL(url);
     });
 
     //addWatermark(pdfObject, "../images/watermark.png");
