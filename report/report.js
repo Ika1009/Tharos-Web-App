@@ -466,7 +466,7 @@ function generatePDF() {
       .then(response => response.arrayBuffer())
         .then(async existingPdfBytes => {
             const mergedPdfBytes = await mergePDFs(pdfObject, existingPdfBytes);
-            mergedPdfBytes.jsPDFDocObject.save("Report - Tharros Security Solutions");
+            mergedPdfBytes.save("Report - Tharros Security Solutions");
     });
 
     //addWatermark(pdfObject, "../images/watermark.png");
