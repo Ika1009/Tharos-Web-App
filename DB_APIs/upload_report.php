@@ -13,6 +13,7 @@ $longitude = $_POST['longitude'] ?? null;
 
 $answers = [];
 $comments = [];
+$values = [];
 
 for ($i = 1; $i <= 111; $i++) {
     $answer = $_POST['q' . $i] ?? null;
@@ -22,8 +23,15 @@ for ($i = 1; $i <= 111; $i++) {
     $comments[] = $comment;
 }
 
+for ($i = 1; $i <= 5; $i++) {
+    $value = $_POST['textarea' . $i] ?? null;
+
+    $values[] = $value;
+}
+
 $answersJson = json_encode($answers);
 $commentsJson = json_encode($comments);
+$valuesJson = json_encode($values);
 
 // Handling file upload
 $image = $_FILES['image'] ?? null;
@@ -52,7 +60,7 @@ if ($image) {
 }
 
 try {
-    $stmt = $pdo->prepare("INSERT INTO reports (user_id, facilityName, address, neighborhood, city, state, zip, latitude, longitude, answers, comments, image) VALUES (:user_id, :facilityName, :address, :neighborhood, :city, :state, :zip, :latitude, :longitude, :answers, :comments, :image)");
+    $stmt = $pdo->prepare("INSERT INTO reports (user_id, facilityName, address, neighborhood, city, state, zip, latitude, longitude, answers, comments, textboxValues, image) VALUES (:user_id, :facilityName, :address, :neighborhood, :city, :state, :zip, :latitude, :longitude, :answers, :comments, :values, :image)");
 
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $stmt->bindParam(':facilityName', $facilityName, PDO::PARAM_STR);
@@ -65,6 +73,7 @@ try {
     $stmt->bindParam(':longitude', $longitude, PDO::PARAM_STR);
     $stmt->bindParam(':answers', $answersJson, PDO::PARAM_STR);
     $stmt->bindParam(':comments', $commentsJson, PDO::PARAM_STR);
+    $stmt->bindParam(':values', $valuesJson, PDO::PARAM_STR);
     $stmt->bindParam(':image', $dbPath, PDO::PARAM_STR); // bind the correct relative path to the statement
 
     if ($stmt->execute()) {

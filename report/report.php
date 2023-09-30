@@ -222,27 +222,27 @@
           <div class="space-y-4">
               <div>
                   <label for="textarea1" class="block text-sm font-medium text-gray-700">Signage and Wayfinding</label>
-                  <textarea id="textarea1" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
+                  <textarea name="textarea1" id="textarea1" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
                   <label for="textarea2" class="block text-sm font-medium text-gray-700">Perimeter Observations</label>
-                  <textarea id="textarea2" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
+                  <textarea name="textarea2" id="textarea2" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
                   <label for="textarea3" class="block text-sm font-medium text-gray-700">Exterior Lighting Observations</label>
-                  <textarea id="textarea3" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
+                  <textarea name="textarea3" id="textarea3" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
                   <label for="textarea4" class="block text-sm font-medium text-gray-700">Activity Generators Observations</label>
-                  <textarea id="textarea4" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
+                  <textarea name="textarea4" id="textarea4" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
               <div>
                   <label for="textarea5" class="block text-sm font-medium text-gray-700">Recommendations</label>
-                  <textarea id="textarea5" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
+                  <textarea name="textarea5" id="textarea5" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-purple-500 focus:border-purple-500" placeholder="Enter text"></textarea>
               </div>
 
           </div>

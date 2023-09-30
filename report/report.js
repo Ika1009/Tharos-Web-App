@@ -327,7 +327,7 @@ function getSessionValue() {
     });
 }
 
-async function uploadReport(answers, comments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, file) {
+async function uploadReport(answers, comments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, file, values) {
   if (typeof answers !== 'object' || !Object.keys(answers).length || !Array.isArray(comments) || !comments.length) {
       console.error("Invalid answers or comments array");
       return;
@@ -371,6 +371,7 @@ async function uploadReport(answers, comments, facilityName, address, neighborho
   });
   // Appending the file to the FormData object
   formData.append('image', file);
+  formData.append('textboxValues', values);
 
   // Setting up the fetch options
   const options = {

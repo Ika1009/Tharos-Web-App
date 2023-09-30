@@ -112,6 +112,8 @@ const questions = [
     "Is additional information attached to the Vulnerability Assessment?"
 ];
 
+let facilityName, neighborhood, city, state, zip, latitude, longitude, values = [];
+
 async function getReport(userId) {
     try {
         const response = await fetch(`../DB_APIs/get_reports.php?user_id=${userId}`);
@@ -180,50 +182,25 @@ function generatePDF(report) {
         return value !== null && value !== undefined ? value : '';
     }
 
-    const facilityName = safeString(report.facilityName);
-    const address = safeString(report.address);
-    const neighborhood = safeString(report.neighborhood);
-    const city = safeString(report.city);
-    const state = safeString(report.state);
-    const zip = safeString(report.zip);
-    const latitude = safeString(report.latitude);
-    const longitude = safeString(report.longitude);    
+    facilityName = safeString(report.facilityName);
+    address = safeString(report.address);
+    neighborhood = safeString(report.neighborhood);
+    city = safeString(report.city);
+    state = safeString(report.state);
+    zip = safeString(report.zip);
+    latitude = safeString(report.latitude);
+    longitude = safeString(report.longitude);    
     const allAnswers = JSON.parse(report.answers);
     const allComments = JSON.parse(report.comments);
+    values = JSON.parse(report.textboxValues);
     
     var props = {
-        outputType: jsPDFInvoiceTemplate.OutputType.Save,
+        outputType: jsPDFInvoiceTemplate,
         returnJsPDFDocObject: true,
         fileName: "Report - Tharros Security Solutions",
         orientationLandscape: false,
         compress: true,
-        logo: {
-            src: "../images/ICON_1-768x767.png",
-            type: 'PNG', //optional, when src= data:uri (nodejs case)
-            width: 26.66, //aspect ratio = width/height
-            height: 26.66,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
-        business: {
-            name: "Tharros Security Solutions",
-            address: "9420 Towne Square Ave, Suite 4 Blue Ash, Ohio 45242",
-            phone: "(+513) 964-0836",
-            email: "ContactUs@Tharros.net",
-            website: "https://tharros.net/",
-        },
-        contact: {
-            label: "Invoice issued for:",
-            name: facilityName,
-            address: address,
-            otherInfo: `${state}, ${city}, ${neighborhood}, ${zip}, ${longitude}, ${latitude}`
-        },
         invoice: {
-            label: "Invoice #: ",
-            num: 1,
-            invGenDate: `Invoice Date: ${new Date()}`,
             headerBorder: false,
             tableBodyBorder: false,
             header: [
@@ -258,8 +235,6 @@ function generatePDF(report) {
                 safeString(allAnswers[index]),
                 safeString(allComments[index])
             ])),
-            invDescLabel: "Invoice Note",
-            invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
         },
         footer: {
             text: "The invoice is created on a computer and is valid without the signature and stamp.",
@@ -270,11 +245,724 @@ function generatePDF(report) {
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
-    // Commented this part of code because quality of image is low
+    addWatermark(pdfObject, "../images/watermark.png");
 
-    //addWatermark(pdfObject, "../images/watermark.png");
+    fetch('firstPage.pdf')
+      .then(response => response.arrayBuffer())
+        .then(async existingPdfBytes => {
+            const mergedPdfBytes = await mergePDFs(pdfObject, existingPdfBytes);
+            // Create a Blob from the merged PDF bytes
+            const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
 
-    //pdfObject.jsPDFDocObject.save("Report"); 
+            // Create a URL for the Blob and use it to create a downloadable link
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Report - Tharros Security Solutions.pdf';
+            document.body.appendChild(a);
+            a.click();
+
+            // Release the URL
+            window.URL.revokeObjectURL(url);
+    });
+}
+
+function addWatermark(pdf, logoSrc) {
+    // Add new page
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Site description', 20, 40);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    let text = `This is a physical security assessment of ${facilityName}, ${address}, using principles of Crime Prevention Through Environmental Design (CPTED) and Situational Crime Prevention. This assessment was requested by Milos Heights. It was conducted on ${new Date().toUTCString()} by Tharros Security Solutions.`;
+
+    let margin = 20;
+    let maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
+
+    // Use splitTextToSize to split lines and ensure they fit within page width
+    let finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 47);
+
+    // Here goes image from database
+    
+    //pdf.jsPDFDocObject.addImage('', `${extension}`, 70, 59, 60, 80);
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('What is CPTED', 20, 148);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    text = "Crime Prevention Through Environmental Design (CPTED) is defined as the proper design and effective use of the built environment that can lead to a reduction in the fear and incidents of crime, and an improvement in the quality of life."
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 155);
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('CPTED Strategies', 20, 183);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Natural Surveillance', 20, 190);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 197, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = "Natural surveillance is a design concept directed primarily at discouraging criminal activity by ensuring that public spaces are easily observable. Formal surveillance techniques may involve hidden cameras, but physical features that maximize the visibility of people, parking areas and entrances to the property. The overall sense of safety improves when people can easily see others and be seen. Examples:"
+
+    margin = 30;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - margin - 20;
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 198.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 221, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Doors and windows that look out onto the street and parking areas.', 45, 222.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 226, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Sidewalks and streets that are open and inviting to pedestrians.', 45, 227.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 231, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Unobstructed sight lines.', 45, 232.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 236, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Open design concepts (avoid hidden spaces).', 45, 237.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 241, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Front porches and activity areas that encourage visibility with the street and neighbors.', 45, 242.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 246, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Adequate nighttime lighting.', 45, 247.35);
+
+    // Add new page 
+    pdf.jsPDFDocObject.addPage();
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Natural Access Control', 20, 40);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 47, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Natural access control is a design concept directed primarily at decreasing crime opportunities by discouraging access to crime targets and creating a perception of risk to offenders. This is a logicalextension of the idea of territorial reinforcement. It is gained by designing streets, sidewalks, building entrances, and neighborhood gateways to clearly indicate public routes, and by discouraging access to private areas with structural elements. Examples:';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 48.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 75, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Avoid walling off your entire property.', 45, 76.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 80, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Access should be limited. (Who has access to the building)', 45, 81.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 85, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Entrances, exits, fences, landscaping, and lighting.', 45, 86.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Territorial Reinforcement', 20, 102);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 109, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Historically the idea of territorial reinforcement lies in the need to defend an area against attack. In our context our hope is that the homeowner develops a sense of territorial control for your property, while potential offenders, perceiving this control, are discouraged from committing a crime. Examples:';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 110.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 128, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Landscaping', 45, 129.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 133, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Pavement designs', 45, 134.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 138, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Fences without compromising natural surveillance.', 45, 139.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 143, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Property designed with elements that encourage interaction with neighbors and the public.', 45, 144.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Maintenance and Image', 20, 160);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 167, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'The maintenance and image of a property shows ownership of the property. Crime is more prevalent in areas that are not maintained. Also known as the Broken Window Theory. Examples:';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 168.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 182, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Well maintained yard.', 45, 183.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 187, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Exterior lighting.', 45, 188.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 192, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Maintained property.', 45, 193.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Order Maintenance', 20, 209);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 216, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Attending to minor unacceptable acts and providing measures that clearly state acceptable behavior.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 217.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 226, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Signage that state expectations and the consequences of unacceptable behavior.', 45, 227.35);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Activity Support', 20, 243);
+
+    // Draw a filled circle
+    pdf.jsPDFDocObject.setFillColor(0, 0, 0); // Black color fill
+    pdf.jsPDFDocObject.circle(25, 250, 0.6, 'F'); // 'F' means fill the circle
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Design formal and informal support for increasing the level of human activity in a particular space as a crime prevention strategy.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 251.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 260, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Outside dining.', 45, 261.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 265, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Street vendors.', 45, 266.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 270, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Taxi stands.', 45, 271.35);
+
+    // Draw an empty circle
+    pdf.jsPDFDocObject.circle(40, 275, 0.6);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Designated areas for pickup and drop-off.', 45, 276.35);
+
+    // Add new page
+    pdf.jsPDFDocObject.addPage();
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Wayfinding', 20, 40);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'The concept of wayfinding is to move pedestrians and/or vehicles to and from or through buildings and sites using roadway transitions, sidewalks, signage, and focal points.';
+
+    margin = 20;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin;
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 48);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Activity Generators', 20, 70);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Items or activities placed in strategic locations where natural surveillance is limited or unavailable. Activity generators help to attract capable individuals to the areas where they can over watch and deter potential crime. Bicycle racks, gazebos, benches, dining, or designated smoking areas encourage activity in the established environment. ';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 78);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Lighting', 20, 110);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'Lighting is the number one deterrent for crime during nighttime hours. A well-lit parking lot, pathway, exterior building, or outdoor facility by a white light source with good uniformity contributes to the perceived safety of pedestrians. High Intensity Discharge bulbs such as Metal Halide and High Pressure Sodium offer good lighting; however, LED provides the best coverage. LED lighting has quickly become the dominant bulb on the market, offering superior light emittance, uniformity, and color rendering for witness identification. ';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 118);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Natural v. Organized v. Mechanical', 20, 160);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    text = 'CPTED focuses on the organic and natural modification of the built environment to accomplish its strategies. Organized strategies utilize the human element to complement the natural goal by way of security guards, receptionist, and property managers. Mechanical elements can be built to further harden a target. Security gates, security cameras, and alarm systems all contribute to the mechanical strategy of crime prevention. ';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 168);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Signage and Wayfinding", 20, 40);
+
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[0], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Perimeter Observations", 20, 40);
+
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[1], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Exterior Lighting Observations", 20, 40);
+
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[2], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Activity Generators Observations", 20, 40);
+
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[3], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
+
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to light blue (RGB values: 11, 193, 245)
+    pdf.jsPDFDocObject.setTextColor(11, 193, 245);
+
+    // Set font size to 16 points
+    pdf.jsPDFDocObject.setFontSize(16);
+
+    pdf.jsPDFDocObject.text("Recommendations", 20, 40);
+
+    // Set font size to 12 points
+    pdf.jsPDFDocObject.setFontSize(12);
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(values[4], maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 55);
+
+    // Add new page
+    pdf.jsPDFDocObject.addPage();
+
+    // Set text color to black (RGB values: 0, 0, 0)
+    pdf.jsPDFDocObject.setTextColor(0, 0, 0);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Other Considerations:', 20, 40);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Create an Emergency Operations Plan that is defined by these four mission areas.', 33, 47);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('1. Deterrence', 39, 55);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 60);
+
+    margin = 56;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - margin - 25;
+
+    text = 'Deterrence means the capabilities necessary to avoid, prevent or stop a threatened or real mass shooting before it occurs.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 60);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 68.5);
+
+    text = 'Capabilities might include a program designed to uncover threats before they materialize, such as creating an educational program or a process to review the social media accounts of “at risk” individuals. They might include implementing overt physical security measures designed to deter a mass shooter from ever considering your property as a target.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 68.5);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('2. Protection', 39, 85);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 90);
+
+    text = 'All the physical and procedural capabilities designed to stop or inhibit a mass shooter from successfully carrying out plans if your property is targeted';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 90);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 98.5);
+
+    text = 'Capabilities may include hardening-up the physical structure of your institution, installing active countermeasures or a procedural response such as an enhanced lockdown. Capabilities may also include designating specific rooms as protected “safe rooms” pre-staged with certain equipment and designating and training staff members or volunteers for an armed response.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 98.5);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('3. Response', 39, 118.5);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 123.5);
+
+    text = 'How individuals, staff members and those in leadership or assigned positions should respond to a mass shooter making entry into your house of worship, school or business.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 123.5);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 132);
+
+    text = 'Include the immediate implementation of the lockdown procedures and the active countermeasures detailed under the protection mission, immediate (or automated) communication with law enforcement, immediate response by individuals to run, hide or fight, and the activation of on-scene armed responders using the procedures also outlined in the protection mission.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 132);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Set font size to 10 points
+    pdf.jsPDFDocObject.setFontSize(10);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('4. Mitigation', 39, 152);
+    
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('a.', 50, 157);
+
+    text = 'A plan designed to mitigate the loss of life when an attack has occurred.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 157);
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('b.', 50, 162);
+
+    text = 'Example: implementation of a triage system and emergency first-aid treatment of victims by on-scene personnel before emergency services arrive on the scene.';
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 162);
+
+    // Set font size to 11 points
+    pdf.jsPDFDocObject.setFontSize(11);
+
+    // Set font type to bold
+    pdf.jsPDFDocObject.setFont(undefined, 'bold');
+
+    // Add text to the PDF
+    pdf.jsPDFDocObject.text('Conclusion:', 20, 250);
+
+    // Set font type to normal
+    pdf.jsPDFDocObject.setFont(undefined, 'normal');
+
+    // Set font size to 9 points
+    pdf.jsPDFDocObject.setFontSize(9);
+
+    pdf.jsPDFDocObject.text('It is proven that if a building is secure and well maintained, it is less likely to experience criminality.', 43.5, 250);
+
+    text = 'Addressing the recommendations in this report can eliminate the risk or reduce the impact if an incident occurs. We  believe that if schools, houses of worship, and public and private businesses were to implement the steps outlined  here, criminals would give up plans entirely';
+
+    margin = 20;
+    maxWidth = pdf.jsPDFDocObject.internal.pageSize.getWidth() - 2 * margin - 5;
+
+    finalText = pdf.jsPDFDocObject.splitTextToSize(text, maxWidth);
+
+    pdf.jsPDFDocObject.text(finalText, margin, 254);
+
+    for (let i = 1; i <= pdf.pagesNumber + 9; i++) {
+        pdf.jsPDFDocObject.setPage(i);
+        pdf.jsPDFDocObject.addImage(logoSrc, 'png', 0, 0, 210, 297);
+    }
 }
 
 function toggleMenu() {
