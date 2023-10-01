@@ -173,9 +173,7 @@ async function getReport(userId) {
     }
 }
 
-
 getReport(userSessionId);
-
 
 function generatePDF(report) {
     function safeString(value) {
@@ -245,7 +243,7 @@ function generatePDF(report) {
 
     var pdfObject = jsPDFInvoiceTemplate.default({ ...props });
 
-    addWatermark(pdfObject, "../images/watermark.png");
+    addWatermark(pdfObject, "../images/watermark.png", report.image);
 
     fetch('firstPage.pdf')
       .then(response => response.arrayBuffer())
@@ -268,7 +266,7 @@ function generatePDF(report) {
     });
 }
 
-function addWatermark(pdf, logoSrc) {
+function addWatermark(pdf, logoSrc, imageSrc) {
     // Add new page
     pdf.jsPDFDocObject.addPage();
 
@@ -298,9 +296,7 @@ function addWatermark(pdf, logoSrc) {
 
     pdf.jsPDFDocObject.text(finalText, margin, 47);
 
-    // Here goes image from database
-
-    //pdf.jsPDFDocObject.addImage('', `${extension}`, 70, 59, 60, 80);
+    pdf.jsPDFDocObject.addImage(`${imageSrc}`, `${extension}`, 70, 59, 60, 80);
 
     // Set text color to light blue (RGB values: 11, 193, 245)
     pdf.jsPDFDocObject.setTextColor(11, 193, 245);
