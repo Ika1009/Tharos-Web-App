@@ -296,7 +296,7 @@ function addWatermark(pdf, logoSrc, imageSrc) {
 
     pdf.jsPDFDocObject.text(finalText, margin, 47);
 
-    const parts = imageSrc.name.split('.');
+    const parts = imageSrc.split('.');
     const extension = parts[parts.length - 1].toLowerCase();
 
     pdf.jsPDFDocObject.addImage(`${imageSrc}`, `${extension}`, 70, 59, 60, 80);
