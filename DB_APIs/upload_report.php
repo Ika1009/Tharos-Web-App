@@ -24,7 +24,7 @@ for ($i = 1; $i <= 111; $i++) {
 }
 
 for ($i = 1; $i <= 5; $i++) {
-    $value = $_POST['textarea' . $i] ?? null;
+    $value = $_POST['textboxValues' . $i] ?? null;
 
     $values[] = $value;
 }

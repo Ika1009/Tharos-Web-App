@@ -364,6 +364,10 @@ async function uploadReport(answers, comments, facilityName, address, neighborho
       payload['comment' + i] = comments[i - 1];
   }
 
+  for (let i = 1; i <= 5; i++) {
+    payload['textboxValues' + i] = values[i - 1];
+  }
+
   // Creating a FormData object to hold all the payload data including the file.
   const formData = new FormData();
   Object.keys(payload).forEach(key => {
@@ -371,7 +375,6 @@ async function uploadReport(answers, comments, facilityName, address, neighborho
   });
   // Appending the file to the FormData object
   formData.append('image', file);
-  formData.append('textboxValues', values);
 
   // Setting up the fetch options
   const options = {
