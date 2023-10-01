@@ -1,5 +1,3 @@
-Certainly, here's the updated README without the "Usage" and "Installation" sections:
-
 # Tharos Security Reporting App 🛡️
 
 ![Tharos Logo](link_to_logo.png)
