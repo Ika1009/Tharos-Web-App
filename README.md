@@ -1,3 +1,4 @@
+Certainly, here's the updated README without the "Usage" and "Installation" sections:
 
 # Tharos Security Reporting App 🛡️
 
@@ -24,35 +25,6 @@ Welcome to the Tharos Security Reporting App, a powerful tool designed to stream
 - JavaScript: Adding interactivity and functionality to the frontend.
 - MySQL: Managing the backend database for storing user data and reports.
 - PHP: Creating APIs and handling server-side operations.
-
-## Installation 🚀
-
-1. Clone this repository to your local machine.
-   ```bash
-   git clone https://github.com/yourusername/tharos-security-app.git
-   ```
-
-2. Configure your web server to host the app.
-
-3. Import the database schema from `database.sql` into your MySQL server.
-
-4. Update the database connection settings in `config.php` to match your MySQL configuration.
-
-5. Start your web server and access the app in your browser.
-
-## Usage 📋
-
-1. **User Registration and Login**: Users can register and log in to the app with 2FA for added security.
-
-2. **Create Reports**: Once logged in, users can easily create incident reports by filling out the provided form with questions, text inputs, and image uploads.
-
-3. **PDF Reports**: Generated reports are saved as PDF files, and users can access them in the History tab.
-
-4. **Admin Panel**: Admins have access to the admin panel, where they can create new users and review the full history of PDF reports.
-
-## Contributing 🤝
-
-We welcome contributions to improve this project! If you have ideas for enhancements or find any issues, please submit a pull request or open an issue on GitHub.
 
 ## License 📜
 
