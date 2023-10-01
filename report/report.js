@@ -410,7 +410,7 @@ function generatePDF() {
         const textareaValue = document.getElementById(`textarea${i}`).value;
         values.push(textareaValue);
     }
-    uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, FILE);
+    uploadReport(allAnswers, allComments, facilityName, address, neighborhood, city, state, zip, latitude, longitude, FILE, values);
 
     var props = {
         outputType: jsPDFInvoiceTemplate,
