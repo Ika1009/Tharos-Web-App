@@ -139,6 +139,14 @@ let facilityName, neighborhood, city, state, zip, latitude, longitude, values = 
 const tableBody = document.querySelector('tbody');
 let index = 1;
 
+const categoryRow = document.createElement('tr');
+const categoryCell = document.createElement('td');
+categoryCell.className = 'border px-4 py-2 bg-custom-dark-blue text-white';
+categoryCell.textContent = "Perimeter Control";
+categoryCell.setAttribute('colspan', '4'); // Assuming you have 4 columns
+categoryRow.appendChild(categoryCell);
+tableBody.appendChild(categoryRow);
+
 // Create 100 rows and insert them into the table
 for (let i = 2; i <= 111; i++) {
   // Check if there is a category for this question number
