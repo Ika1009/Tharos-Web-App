@@ -263,6 +263,9 @@
           </thead>
           <tbody>
             <tr>
+              <td class="border text-center px-4 py-2 bg-gray-700 font-bold uppercase" colspan="4">Perimeter Control</td>
+            </tr>
+            <tr>
               <td class="border px-2 py-2 text-center">1.</td> <!-- Adjusted width and centered text -->
               <td class="border text-center px-2 py-2">Is the outer perimeter well defined with physical barriers?</td>
               <td class="border px-4 py-2 text-center">
