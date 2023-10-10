@@ -1,6 +1,6 @@
 # Tharros Security Reporting App 🛡️
 
-![Tharros Logo](link_to_logo.png)
+![Tharros Logo](images/Tharros-Security-Solutions_LOGO-B-768x233.png)
 
 Welcome to the Tharros Security Reporting App, a powerful tool designed to streamline security incident reporting and management. This web application offers secure user authentication with two-factor authentication (2FA), easy report creation with a user-friendly form, history tracking of generated PDF reports, and an admin panel for user management and PDF history review.
 
