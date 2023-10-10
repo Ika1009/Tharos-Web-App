@@ -1,8 +1,8 @@
-# Tharos Security Reporting App 🛡️
+# Tharros Security Reporting App 🛡️
 
-![Tharos Logo](link_to_logo.png)
+![Tharros Logo](link_to_logo.png)
 
-Welcome to the Tharos Security Reporting App, a powerful tool designed to streamline security incident reporting and management. This web application offers secure user authentication with two-factor authentication (2FA), easy report creation with a user-friendly form, history tracking of generated PDF reports, and an admin panel for user management and PDF history review.
+Welcome to the Tharros Security Reporting App, a powerful tool designed to streamline security incident reporting and management. This web application offers secure user authentication with two-factor authentication (2FA), easy report creation with a user-friendly form, history tracking of generated PDF reports, and an admin panel for user management and PDF history review.
 
 ## Features 🌟
 
@@ -28,14 +28,14 @@ Welcome to the Tharos Security Reporting App, a powerful tool designed to stream
 
 This project is licensed under the [MIT License](LICENSE).
 
-## About Tharos 🏢
+## About Tharros 🏢
 
-Tharos is a leading security company dedicated to ensuring the safety and protection of businesses and individuals. This app is designed to support Tharos in its mission to maintain high security standards.
+Tharros is a leading security company dedicated to ensuring the safety and protection of businesses and individuals. This app is designed to support Tharros in its mission to maintain high security standards.
 
 ## Contact Us 📧
 
-If you have any questions or need assistance, feel free to contact our support team at support@tharos-security.com.
+If you have any questions or need assistance, feel free to contact our support team at support@tharros-security.com.
 
-Thank you for using the Tharos Security Reporting App! 🙌
+Thank you for using the Tharros Security Reporting App! 🙌
 
 🚀 Happy Reporting! 🚀
